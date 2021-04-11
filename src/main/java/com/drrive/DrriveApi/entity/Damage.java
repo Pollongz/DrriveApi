@@ -24,7 +24,7 @@ public class Damage {
     private String description;
 
     @ManyToOne
-    @JoinColumn(name = "id_cars", nullable = false)
+    @JoinColumn(name = "id_cars")
     private Car cars;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "damages")

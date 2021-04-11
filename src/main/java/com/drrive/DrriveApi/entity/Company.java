@@ -30,7 +30,7 @@ public class Company {
     @JoinColumn(name = "id_address")
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "companies")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     private Set<Car> cars;
 
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "companies")
