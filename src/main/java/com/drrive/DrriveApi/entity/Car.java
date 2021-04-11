@@ -19,7 +19,7 @@ import java.util.Set;
 public class Car {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cars")
     private Integer idCar;
     @Column(name = "brand_name")

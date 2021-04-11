@@ -17,7 +17,7 @@ import java.util.Date;
 public class Refueling {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_refuelings")
     private Integer idRefuel;
     @Column(name = "fuel_type")

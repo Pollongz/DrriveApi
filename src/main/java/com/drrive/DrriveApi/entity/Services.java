@@ -17,7 +17,7 @@ import java.util.Date;
 public class Services {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_services")
     private Integer idServices;
     @Column(name = "service_type")

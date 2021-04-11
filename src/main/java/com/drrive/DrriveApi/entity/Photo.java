@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class Photo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_photos")
     private Integer idPhoto;
     @Column(name = "photo_url")

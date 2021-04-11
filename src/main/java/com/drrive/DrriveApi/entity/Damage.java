@@ -17,14 +17,14 @@ import java.util.Set;
 public class Damage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_damages")
     private Integer idDamage;
     @Column(name = "description")
     private String description;
 
     @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "id_cars")
+    @JoinColumn(name = "id_cars", insertable=false, updatable=false)
     private Car cars;
 
     @OneToMany(mappedBy = "damages")
