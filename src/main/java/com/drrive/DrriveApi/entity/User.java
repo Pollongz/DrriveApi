@@ -1,5 +1,6 @@
 package com.drrive.DrriveApi.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -30,7 +31,7 @@ public class User {
     @JoinColumn(name = "id_users_data")
     private UserData usersData;
 
-    @ManyToOne(targetEntity = Company.class)
-    @JoinColumn(name = "id_companies")
-    private Company company;
+    @ManyToOne
+    @JoinColumn(name = "id_companies", nullable = false)
+    private Company companies;
 }

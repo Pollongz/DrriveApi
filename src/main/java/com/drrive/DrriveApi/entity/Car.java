@@ -1,5 +1,6 @@
 package com.drrive.DrriveApi.entity;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -48,7 +49,7 @@ public class Car {
     @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "cars")
     private Set<Services> services;
 
-    @ManyToOne(targetEntity = Company.class)
-    @JoinColumn(name = "id_companies")
-    private Company company;
+    @ManyToOne
+    @JoinColumn(name = "id_companies", nullable = false)
+    private Company companies;
 }

@@ -30,11 +30,9 @@ public class Company {
     @JoinColumn(name = "id_address")
     private Address address;
 
-    @OneToMany(mappedBy = "company")
-    @JsonBackReference
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "companies")
     private Set<Car> cars;
 
-    @OneToMany(mappedBy = "company")
-    @JsonBackReference
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "companies")
     private Set<User> users;
 }
