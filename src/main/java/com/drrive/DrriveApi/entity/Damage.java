@@ -17,16 +17,16 @@ import java.util.Set;
 public class Damage {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_damages")
     private Integer idDamage;
     @Column(name = "description")
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @JoinColumn(name = "id_cars")
     private Car cars;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "damages")
+    @OneToMany(mappedBy = "damages", fetch = FetchType.LAZY)
     private Set<Photo> photos;
 }

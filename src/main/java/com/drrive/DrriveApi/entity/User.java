@@ -17,7 +17,7 @@ import javax.persistence.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_users")
     private Integer idUser;
     @Column(name = "first_name")
@@ -31,7 +31,7 @@ public class User {
     @JoinColumn(name = "id_users_data")
     private UserData usersData;
 
-    @ManyToOne
-    @JoinColumn(name = "id_companies", nullable = false)
+    @ManyToOne(optional=false,fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_companies", insertable=false, updatable=false)
     private Company companies;
 }

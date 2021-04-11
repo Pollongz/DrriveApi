@@ -17,7 +17,7 @@ import java.util.Date;
 public class Services {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_services")
     private Integer idServices;
     @Column(name = "service_type")
@@ -29,7 +29,7 @@ public class Services {
     @Column(name = "service_date")
     private Date date;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cars", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cars", insertable=false, updatable=false)
     private Car cars;
 }

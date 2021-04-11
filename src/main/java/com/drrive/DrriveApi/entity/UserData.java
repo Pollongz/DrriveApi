@@ -17,16 +17,16 @@ import javax.persistence.*;
 public class UserData {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column( name = "id_users_data")
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "id_users_data")
     private Integer idUsersData;
-    @Column( name = "username")
+    @Column(name = "username")
     private String username;
-    @Column( name = "password")
+    @Column(name = "password")
     private String password;
-    @Column( name = "email")
+    @Column(name = "email")
     private String email;
-    @Column( name = "privelage")
+    @Column(name = "privelage")
     private String privelage;
 
     @OneToOne(mappedBy = "usersData")

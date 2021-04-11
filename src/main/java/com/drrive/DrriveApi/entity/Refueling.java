@@ -17,7 +17,7 @@ import java.util.Date;
 public class Refueling {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_refuelings")
     private Integer idRefuel;
     @Column(name = "fuel_type")
@@ -31,7 +31,7 @@ public class Refueling {
     @Column(name = "refuel_date")
     private Date date;
 
-    @ManyToOne
-    @JoinColumn(name = "id_cars", nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id_cars", insertable=false, updatable=false)
     private Car cars;
 }

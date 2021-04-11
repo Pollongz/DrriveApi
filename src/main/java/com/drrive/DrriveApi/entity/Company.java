@@ -18,7 +18,7 @@ import java.util.Set;
 public class Company {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_companies")
     private Integer idCompany;
     @Column(name = "name")
@@ -30,9 +30,9 @@ public class Company {
     @JoinColumn(name = "id_address")
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companies")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companies", fetch = FetchType.LAZY)
     private Set<Car> cars;
 
-    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true, mappedBy = "companies")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companies", fetch = FetchType.LAZY)
     private Set<User> users;
 }

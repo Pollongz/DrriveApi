@@ -17,13 +17,13 @@ import javax.persistence.*;
 public class Photo {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id_photos")
     private Integer idPhoto;
     @Column(name = "photo_url")
     private String photoUrl;
 
     @ManyToOne
-    @JoinColumn(name = "id_damages", nullable = false)
+    @JoinColumn(name = "id_damages", insertable=false, updatable=false)
     private Damage damages;
 }
