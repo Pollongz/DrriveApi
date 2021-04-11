@@ -31,7 +31,7 @@ public class User {
     @JoinColumn(name = "id_users_data")
     private UserData usersData;
 
-    @ManyToOne(optional=false,fetch = FetchType.LAZY)
+    @ManyToOne(optional=false)
     @JoinColumn(name = "id_companies", insertable=false, updatable=false)
     private Company companies;
 }

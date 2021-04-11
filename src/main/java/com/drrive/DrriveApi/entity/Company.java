@@ -30,9 +30,9 @@ public class Company {
     @JoinColumn(name = "id_address")
     private Address address;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companies", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     private Set<Car> cars;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companies", fetch = FetchType.LAZY)
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "companies")
     private Set<User> users;
 }

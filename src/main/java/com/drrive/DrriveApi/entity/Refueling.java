@@ -31,7 +31,7 @@ public class Refueling {
     @Column(name = "refuel_date")
     private Date date;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_cars", insertable=false, updatable=false)
     private Car cars;
 }

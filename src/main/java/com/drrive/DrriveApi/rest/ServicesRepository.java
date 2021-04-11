@@ -4,6 +4,6 @@ import com.drrive.DrriveApi.entity.Services;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
-@RepositoryRestResource(collectionResourceRel = "services", path = "service")
+@RepositoryRestResource(collectionResourceRel = "services", path = "services")
 public interface ServicesRepository extends PagingAndSortingRepository<Services, Integer> {
 }

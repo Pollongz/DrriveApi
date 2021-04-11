@@ -39,16 +39,16 @@ public class Car {
     @Column(name = "is_taken")
     private Integer isTaken;
 
-    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
     private Set<Damage> damages;
 
-    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
     private Set<Refueling> refuelings;
 
-    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
     private Set<Services> services;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne
     @JoinColumn(name = "id_companies", nullable = false)
     private Company companies;
 }

@@ -23,10 +23,10 @@ public class Damage {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "id_cars")
     private Car cars;
 
-    @OneToMany(mappedBy = "damages", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "damages")
     private Set<Photo> photos;
 }
