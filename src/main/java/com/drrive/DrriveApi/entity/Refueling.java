@@ -1,11 +1,14 @@
 package com.drrive.DrriveApi.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -14,7 +17,7 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "refuelings")
-public class Refueling {
+public class Refueling implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,6 +35,7 @@ public class Refueling {
     private Date date;
 
     @ManyToOne
+    @JsonBackReference(value = "carsRefuelings")
     @JoinColumn(name = "id_cars", insertable=false, updatable=false)
     private Car cars;
 }

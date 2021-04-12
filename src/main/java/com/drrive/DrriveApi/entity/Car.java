@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.Set;
 
 @NoArgsConstructor
@@ -16,7 +17,7 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "cars")
-public class Car {
+public class Car implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,15 +41,19 @@ public class Car {
     private Integer isTaken;
 
     @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "carsDamages")
     private Set<Damage> damages;
 
     @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "carsRefuelings")
     private Set<Refueling> refuelings;
 
     @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "carsServices")
     private Set<Services> services;
 
     @ManyToOne
+    @JsonManagedReference(value = "companyCars")
     @JoinColumn(name = "id_companies", nullable = false)
     private Company companies;
 }
