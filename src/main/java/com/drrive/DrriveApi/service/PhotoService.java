@@ -1,5 +1,8 @@
 package com.drrive.DrriveApi.service;
 
+import com.drrive.DrriveApi.entity.Car;
+import com.drrive.DrriveApi.entity.Company;
+import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Photo;
 import com.drrive.DrriveApi.rest.PhotoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,10 @@ public class PhotoService {
 
     public List<Photo> getPhotos() {
         return photoRepository.findAll();
+    }
+
+    public List<Photo> getDamagesPhotos(Damage damage) {
+        return photoRepository.findPhotosFromDamage(damage);
     }
 
     public Photo getPhotoById(Integer idPhoto) {

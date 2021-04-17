@@ -1,6 +1,9 @@
 package com.drrive.DrriveApi.service;
 
+import com.drrive.DrriveApi.entity.Car;
+import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.entity.Damage;
+import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.DamageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +22,10 @@ public class DamageService {
 
     public List<Damage> getDamages() {
         return damageRepository.findAll();
+    }
+
+    public List<Damage> getCarsDamages(Car car) {
+        return damageRepository.findDamagesFromCar(car);
     }
 
     public Damage getDamagesById(Integer idDamage) {
@@ -41,7 +48,7 @@ public class DamageService {
         damageRepository.deleteById(idDamage);
     }
 
-    public Damage updateDamage(Damage damage) {
+    public void updateDamage(Damage damage) {
         Damage existingDamage = damageRepository.findById(damage.getIdDamage())
                 .orElseThrow(() -> new IllegalStateException(
                         "Damage with id: " + damage.getIdDamage() + "doesn't exist."
@@ -49,6 +56,6 @@ public class DamageService {
         existingDamage.setDescription(damage.getDescription());
         existingDamage.setCar(damage.getCar());
 
-        return damageRepository.save(existingDamage);
+        damageRepository.save(existingDamage);
     }
 }

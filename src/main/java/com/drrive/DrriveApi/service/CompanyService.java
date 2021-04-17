@@ -1,6 +1,8 @@
 package com.drrive.DrriveApi.service;
 
+import com.drrive.DrriveApi.entity.Address;
 import com.drrive.DrriveApi.entity.Company;
+import com.drrive.DrriveApi.rest.AddressRepository;
 import com.drrive.DrriveApi.rest.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -41,7 +43,7 @@ public class CompanyService {
         companyRepository.deleteById(idCompany);
     }
 
-    public Company updateCompany(Company company) {
+    public void updateCompany(Company company) {
         Company existingCompany = companyRepository.findById(company.getIdCompany())
                 .orElseThrow(() -> new IllegalStateException(
                         "Car with id: " + company.getIdCompany() + "doesn't exist."
@@ -50,6 +52,6 @@ public class CompanyService {
         existingCompany.setNip(company.getNip());
         existingCompany.setAddress(company.getAddress());
 
-        return companyRepository.save(existingCompany);
+        companyRepository.save(existingCompany);
     }
 }

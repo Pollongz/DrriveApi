@@ -1,6 +1,8 @@
 package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Address;
+import com.drrive.DrriveApi.entity.Car;
+import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.rest.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,10 +38,10 @@ public class AddressService {
         return addressRepository.findById(idAddress).orElse(null);
     }
 
-    //customized query
-    public List<Address> getAddressByCity(String city) {
-        return addressRepository.findByStreet(city);
-    }
+//    customized query
+//    public List<Address> getAddressByCity(String city) {
+//        return addressRepository.findByStreet(city);
+//    }
 
     public void addNewAddres(Address address) {
         addressRepository.save(address);
