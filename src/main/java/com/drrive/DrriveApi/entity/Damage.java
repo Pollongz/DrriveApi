@@ -1,20 +1,15 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "damages")
 public class Damage implements Serializable {
@@ -26,12 +21,11 @@ public class Damage implements Serializable {
     @Column(name = "description")
     private String description;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "carsDamages")
-    @JoinColumn(name = "id_cars", insertable=false, updatable=false)
-    private Car cars;
+    @ManyToOne
+    @JoinColumn(name = "id_car")
+    private Car car;
 
-    @OneToMany(mappedBy = "damages")
-    @JsonBackReference(value = "damagesPhotos")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "damage")
+    @JsonBackReference(value = "damagePhotos")
     private Set<Photo> photos;
 }

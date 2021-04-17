@@ -1,20 +1,15 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "refuelings")
 public class Refueling implements Serializable {
@@ -22,7 +17,7 @@ public class Refueling implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_refuelings")
-    private Integer idRefuel;
+    private Integer idRefueling;
     @Column(name = "fuel_type")
     private String fuelType;
     @Column(name = "fuel_quantity")
@@ -35,7 +30,6 @@ public class Refueling implements Serializable {
     private Date date;
 
     @ManyToOne
-    @JsonBackReference(value = "carsRefuelings")
-    @JoinColumn(name = "id_cars", insertable=false, updatable=false)
-    private Car cars;
+    @JoinColumn(name = "id_car")
+    private Car car;
 }

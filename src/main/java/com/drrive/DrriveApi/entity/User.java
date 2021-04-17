@@ -1,19 +1,13 @@
 package com.drrive.DrriveApi.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "users")
 public class User implements Serializable {
@@ -29,13 +23,11 @@ public class User implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
-    @OneToOne(targetEntity = UserData.class)
-    @JsonBackReference(value = "usersDataUser")
-    @JoinColumn(name = "id_users_data")
-    private UserData usersData;
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "id_login_data")
+    private LoginData loginData;
 
-    @ManyToOne(targetEntity = Company.class)
-    @JsonBackReference(value = "companyUsers")
-    @JoinColumn(name = "id_companies")
-    private Company companies;
+    @ManyToOne
+    @JoinColumn(name = "id_company")
+    private Company company;
 }

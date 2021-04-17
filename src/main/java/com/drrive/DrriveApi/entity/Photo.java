@@ -1,19 +1,15 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "photos")
 public class Photo implements Serializable {
@@ -26,7 +22,6 @@ public class Photo implements Serializable {
     private String photoUrl;
 
     @ManyToOne
-    @JsonBackReference(value = "damagesPhotos")
-    @JoinColumn(name = "id_damages", insertable=false, updatable=false)
-    private Damage damages;
+    @JoinColumn(name = "id_damage")
+    private Damage damage;
 }

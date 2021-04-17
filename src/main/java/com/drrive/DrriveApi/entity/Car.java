@@ -2,19 +2,15 @@ package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Set;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
 @Table(name = "cars")
 public class Car implements Serializable {
@@ -40,20 +36,19 @@ public class Car implements Serializable {
     @Column(name = "is_taken")
     private Integer isTaken;
 
-    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
-    @JsonBackReference(value = "carsDamages")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+    @JsonBackReference(value = "carDamages")
     private Set<Damage> damages;
 
-    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
-    @JsonBackReference(value = "carsRefuelings")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+    @JsonBackReference(value = "carRefuelings")
     private Set<Refueling> refuelings;
 
-    @OneToMany(mappedBy = "cars", cascade = CascadeType.ALL)
-    @JsonBackReference(value = "carsServices")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+    @JsonBackReference(value = "carServices")
     private Set<Services> services;
 
     @ManyToOne
-    @JsonManagedReference(value = "companyCars")
-    @JoinColumn(name = "id_companies", nullable = false)
-    private Company companies;
+    @JoinColumn(name = "id_company")
+    private Company company;
 }

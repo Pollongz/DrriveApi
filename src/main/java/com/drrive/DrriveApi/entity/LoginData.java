@@ -1,26 +1,22 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
-@Setter
 @Entity
-@Table(name = "users_data")
-public class UserData implements Serializable {
+@Table(name = "login_data")
+public class LoginData implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_users_data")
-    private Integer idUsersData;
+    @Column(name = "id_login_data")
+    private Integer idLoginData;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
@@ -30,7 +26,7 @@ public class UserData implements Serializable {
     @Column(name = "privelage")
     private String privelage;
 
-    @OneToOne(mappedBy = "usersData")
-    @JsonBackReference(value = "usersDataUser")
+    @OneToOne(mappedBy = "loginData")
+    @JsonBackReference(value = "usersLogin")
     private User user;
 }
