@@ -1,5 +1,7 @@
 package com.drrive.DrriveApi.service;
 
+import com.drrive.DrriveApi.entity.Car;
+import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Services;
 import com.drrive.DrriveApi.rest.ServicesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,10 @@ public class ServicesService {
 
     public List<Services> getServices() {
         return servicesRepository.findAll();
+    }
+
+    public List<Services> getCarsServices(Car car) {
+        return servicesRepository.findServicesFromCar(car);
     }
 
     public Services getServicesById(Integer idServices) {

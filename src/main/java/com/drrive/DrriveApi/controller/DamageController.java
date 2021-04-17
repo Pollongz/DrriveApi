@@ -1,9 +1,11 @@
 package com.drrive.DrriveApi.controller;
 
+import com.drrive.DrriveApi.entity.Car;
+import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.entity.Damage;
-import com.drrive.DrriveApi.entity.User;
+import com.drrive.DrriveApi.entity.Photo;
 import com.drrive.DrriveApi.service.DamageService;
-import com.drrive.DrriveApi.service.UserService;
+import com.drrive.DrriveApi.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,15 +16,22 @@ import java.util.List;
 public class DamageController {
 
     private final DamageService damageService;
+    private final PhotoService photoService;
 
     @Autowired
-    public DamageController(DamageService damageService) {
+    public DamageController(DamageService damageService, PhotoService photoService) {
         this.damageService = damageService;
+        this.photoService = photoService;
     }
 
     @GetMapping
     public List<Damage> getDamages() {
         return damageService.getDamages();
+    }
+
+    @GetMapping(path = "/{damage}/photos")
+    public List<Photo> getDamagesPhotos(@PathVariable Damage damage) {
+        return photoService.getDamagesPhotos(damage);
     }
 
     @GetMapping(path = "/{idDamage}")

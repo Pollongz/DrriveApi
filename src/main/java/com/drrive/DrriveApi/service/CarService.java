@@ -1,6 +1,7 @@
 package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Car;
+import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.rest.CarRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,18 @@ public class CarService {
 
     public List<Car> getCars() {
         return carRepository.findAll();
+    }
+
+    public List<Car> getCompanyCars(Company company) {
+        return carRepository.findCarsFromCompany(company);
+    }
+
+    public List<Car> getAvailableCars() {
+        return carRepository.findAvailableCars();
+    }
+
+    public List<Car> getTakenCars() {
+        return carRepository.findTakenCars();
     }
 
     public Car getCarById(Integer idCar) {
@@ -41,7 +54,7 @@ public class CarService {
         carRepository.deleteById(idCar);
     }
 
-    public Car updateCar(Car car) {
+    public void updateCar(Car car) {
         Car existingCar = carRepository.findById(car.getIdCar())
                 .orElseThrow(() -> new IllegalStateException(
                         "Car with id: " + car.getIdCar() + "doesn't exist."
@@ -56,6 +69,6 @@ public class CarService {
         existingCar.setIsTaken(car.getIsTaken());
         existingCar.setCompany(car.getCompany());
 
-        return carRepository.save(existingCar);
+        carRepository.save(existingCar);
     }
 }

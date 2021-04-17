@@ -1,5 +1,7 @@
 package com.drrive.DrriveApi.service;
 
+import com.drrive.DrriveApi.entity.Car;
+import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Refueling;
 import com.drrive.DrriveApi.rest.RefuelingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,10 @@ public class RefuelingService {
         return refuelingRepository.findAll();
     }
 
+    public List<Refueling> getCarsRefuelings(Car car) {
+        return refuelingRepository.findRefuelingsFromCar(car);
+    }
+
     public Refueling getRefuelingById(Integer idRefueling) {
         return refuelingRepository.findById(idRefueling)
                 .orElseThrow(() -> new IllegalStateException(
@@ -40,7 +46,7 @@ public class RefuelingService {
         refuelingRepository.deleteById(idRefueling);
     }
 
-    public Refueling updateRefueling(Refueling refueling) {
+    public void updateRefueling(Refueling refueling) {
         Refueling existingRefueling = refuelingRepository.findById(refueling.getIdRefueling())
                 .orElseThrow(() -> new IllegalStateException(
                         "Refueling with id: " + refueling.getIdRefueling() + "doesn't exist."
@@ -52,6 +58,6 @@ public class RefuelingService {
         existingRefueling.setDate(refueling.getDate());
         existingRefueling.setCar(refueling.getCar());
 
-        return refuelingRepository.save(existingRefueling);
+        refuelingRepository.save(existingRefueling);
     }
 }
