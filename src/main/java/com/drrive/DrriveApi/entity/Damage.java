@@ -25,7 +25,7 @@ public class Damage implements Serializable {
     @JoinColumn(name = "id_car")
     private Car car;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "damage")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "damage", cascade = CascadeType.ALL)
     @JsonBackReference(value = "damagePhotos")
     private Set<Photo> photos;
 }

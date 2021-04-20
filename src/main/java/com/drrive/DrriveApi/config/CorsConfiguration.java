@@ -1,4 +1,4 @@
-package com.drrive.DrriveApi;
+package com.drrive.DrriveApi.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

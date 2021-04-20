@@ -21,15 +21,15 @@ public class Company implements Serializable {
     @Column(name = "nip")
     private String nip;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address")
     private Address address;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.ALL)
     @JsonBackReference(value = "companyCars")
     private Set<Car> cars;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.ALL)
     @JsonBackReference(value = "companyUsers")
     private Set<User> users;
 }

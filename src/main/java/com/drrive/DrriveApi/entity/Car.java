@@ -36,7 +36,7 @@ public class Car implements Serializable {
     @Column(name = "is_taken")
     private Integer isTaken;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car", cascade = CascadeType.ALL)
     @JsonBackReference(value = "carDamages")
     private Set<Damage> damages;
 
