@@ -23,8 +23,8 @@ public class ServicesService {
         return servicesRepository.findAll();
     }
 
-    public List<Services> getCarsServices(Car car) {
-        return servicesRepository.findServicesFromCar(car);
+    public List<Services> getCarsServices(Integer id_car) {
+        return servicesRepository.findServicesFromCar(id_car);
     }
 
     public Services getServicesById(Integer idServices) {

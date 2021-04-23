@@ -38,14 +38,14 @@ public class CompanyController {
         return companyService.getCompaniesById(idCompany);
     }
 
-    @GetMapping(path = "/{company}/cars")
-    public List<Car> getCompanyCars(@PathVariable Company company) {
-        return carService.getCompanyCars(company);
+    @GetMapping(path = "/{id_company}/cars")
+    public List<Car> getCompanyCars(@PathVariable Integer id_company) {
+        return carService.getCompanyCars(id_company);
     }
 
-    @GetMapping(path = "/{company}/employees")
-    public List<User> getCompanyEmployees(@PathVariable Company company) {
-        return userService.getCompanyEmployees(company);
+    @GetMapping(path = "/{id_company}/employees")
+    public List<User> getCompanyEmployees(@PathVariable Integer id_company) {
+        return userService.getCompanyEmployees(id_company);
     }
 
     @PostMapping

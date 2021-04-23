@@ -17,16 +17,6 @@ public class AddressService {
 
     @Autowired
     public AddressService(AddressRepository addressRepository) {
-
-        /*
-        dla wyszukiwania usera po emailu
-        Optional<LoginData> userOptional = loginDataRepository.findUserByEmail(logindata.getEmail())
-
-        if (userOptional.isPresent()) {
-        throw new IllegalStateException("user already exists")
-        }
-         */
-
         this.addressRepository = addressRepository;
     }
 

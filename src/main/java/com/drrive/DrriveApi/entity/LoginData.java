@@ -1,7 +1,8 @@
 package com.drrive.DrriveApi.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.*;
+//import org.springframework.security.core.GrantedAuthority;
+//import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -24,10 +25,6 @@ public class LoginData implements Serializable {
     private String password;
     @Column(name = "email")
     private String email;
-
-    @OneToOne(mappedBy = "loginData")
-    @JsonBackReference(value = "usersLogin")
-    private User user;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(

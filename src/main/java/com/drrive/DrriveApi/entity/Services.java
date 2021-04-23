@@ -1,5 +1,6 @@
 package com.drrive.DrriveApi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -28,5 +29,8 @@ public class Services implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_car")
-    private Car car;
+    @JsonIgnore
+    private transient Car car;
+
+    private Integer id_car;
 }

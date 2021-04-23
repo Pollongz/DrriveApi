@@ -24,8 +24,8 @@ public class DamageService {
         return damageRepository.findAll();
     }
 
-    public List<Damage> getCarsDamages(Car car) {
-        return damageRepository.findDamagesFromCar(car);
+    public List<Damage> getCarsDamages(Integer id_car) {
+        return damageRepository.findDamagesFromCar(id_car);
     }
 
     public Damage getDamagesById(Integer idDamage) {

@@ -1,5 +1,6 @@
 package com.drrive.DrriveApi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,11 +24,18 @@ public class User implements Serializable {
     @Column(name = "phone_number")
     private String phoneNumber;
 
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_login_data")
-    private LoginData loginData;
+    @JsonIgnore
+    private transient LoginData loginData;
+
+    private Integer id_login_data;
 
     @ManyToOne
     @JoinColumn(name = "id_company")
-    private Company company;
+    @JsonIgnore
+    private transient Company company;
+
+    private Integer id_company;
 }

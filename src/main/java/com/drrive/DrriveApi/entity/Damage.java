@@ -1,6 +1,7 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,9 +24,12 @@ public class Damage implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_car")
-    private Car car;
+    @JsonIgnore
+    private transient Car car;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "damage", cascade = CascadeType.ALL)
+    private Integer id_car;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id_damage", cascade = CascadeType.ALL)
     @JsonBackReference(value = "damagePhotos")
     private Set<Photo> photos;
 }

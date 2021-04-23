@@ -22,8 +22,8 @@ public class CarService {
         return carRepository.findAll();
     }
 
-    public List<Car> getCompanyCars(Company company) {
-        return carRepository.findCarsFromCompany(company);
+    public List<Car> getCompanyCars(Integer id_company) {
+        return carRepository.findCarsFromCompany(id_company);
     }
 
     public List<Car> getAvailableCars() {

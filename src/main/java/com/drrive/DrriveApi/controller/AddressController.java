@@ -28,11 +28,6 @@ public class AddressController {
         return addressService.getAddressById(idAddress);
     }
 
-//    @GetMapping(path = "/byCity/{city}")
-//    public List<Address> getOneAddress(@PathVariable String city) {
-//        return addressService.getAddressByCity(city);
-//    }
-
     @PostMapping
     public void addNewAddress(@RequestBody Address address) {
         addressService.addNewAddres(address);

@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface DamageRepository extends JpaRepository<Damage, Integer> {
 
-    @Query("SELECT d FROM Damage d WHERE d.car = ?1")
-    List<Damage> findDamagesFromCar(Car car);
+    @Query("SELECT d FROM Damage d WHERE d.id_car = ?1")
+    List<Damage> findDamagesFromCar(Integer id_car);
 }

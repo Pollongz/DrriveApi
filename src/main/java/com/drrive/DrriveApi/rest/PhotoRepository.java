@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface PhotoRepository extends JpaRepository<Photo, Integer> {
 
-    @Query("SELECT p FROM Photo p WHERE p.damage = ?1")
-    List<Photo> findPhotosFromDamage(Damage damage);
+    @Query("SELECT p FROM Photo p WHERE p.id_damage = ?1")
+    List<Photo> findPhotosFromDamage(Integer id_damage);
 }
 
 

@@ -29,9 +29,9 @@ public class DamageController {
         return damageService.getDamages();
     }
 
-    @GetMapping(path = "/{damage}/photos")
-    public List<Photo> getDamagesPhotos(@PathVariable Damage damage) {
-        return photoService.getDamagesPhotos(damage);
+    @GetMapping(path = "/{id_damage}/photos")
+    public List<Photo> getDamagesPhotos(@PathVariable Integer id_damage) {
+        return photoService.getDamagesPhotos(id_damage);
     }
 
     @GetMapping(path = "/{idDamage}")

@@ -32,19 +32,19 @@ public class CarController {
         return carService.getCars();
     }
 
-    @GetMapping(path = "/{car}/damages")
-    public List<Damage> getCarsDamages(@PathVariable Car car) {
-        return damageService.getCarsDamages(car);
+    @GetMapping(path = "/{id_car}/damages")
+    public List<Damage> getCarsDamages(@PathVariable Integer id_car) {
+        return damageService.getCarsDamages(id_car);
     }
 
-    @GetMapping(path = "/{car}/refuelings")
-    public List<Refueling> getCarsRefuelings(@PathVariable Car car) {
-        return refuelingService.getCarsRefuelings(car);
+    @GetMapping(path = "/{id_car}/refuelings")
+    public List<Refueling> getCarsRefuelings(@PathVariable Integer id_car) {
+        return refuelingService.getCarsRefuelings(id_car);
     }
 
-    @GetMapping(path = "/{car}/services")
-    public List<Services> getCarsServices(@PathVariable Car car) {
-        return servicesService.getCarsServices(car);
+    @GetMapping(path = "/{id_car}/services")
+    public List<Services> getCarsServices(@PathVariable Integer id_car) {
+        return servicesService.getCarsServices(id_car);
     }
 
     @GetMapping(path = "/available")

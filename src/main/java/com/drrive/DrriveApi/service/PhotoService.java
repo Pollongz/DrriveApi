@@ -1,10 +1,10 @@
 package com.drrive.DrriveApi.service;
 
-import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Company;
+import com.drrive.DrriveApi.dto.PhotoDto;
 import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Photo;
 import com.drrive.DrriveApi.rest.PhotoRepository;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +24,8 @@ public class PhotoService {
         return photoRepository.findAll();
     }
 
-    public List<Photo> getDamagesPhotos(Damage damage) {
-        return photoRepository.findPhotosFromDamage(damage);
+    public List<Photo> getDamagesPhotos(Integer id_damage) {
+        return photoRepository.findPhotosFromDamage(id_damage);
     }
 
     public Photo getPhotoById(Integer idPhoto) {
@@ -35,8 +35,8 @@ public class PhotoService {
                 ));
     }
 
-    public void addNewPhoto(Photo photo) {
-        photoRepository.save(photo);
+    public Photo addNewPhoto(Photo photo) {
+        return photoRepository.save(photo);
     }
 
     public void deletePhoto(Integer idPhoto) {
@@ -47,6 +47,8 @@ public class PhotoService {
         photoRepository.deleteById(idPhoto);
     }
 
+
+    //not used
     public Photo updatePhoto(Photo photo) {
         Photo existingPhoto = photoRepository.findById(photo.getIdPhoto())
                 .orElseThrow(() -> new IllegalStateException(

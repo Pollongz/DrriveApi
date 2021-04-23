@@ -1,6 +1,7 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -31,5 +32,8 @@ public class Refueling implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_car")
-    private Car car;
+    @JsonIgnore
+    private transient Car car;
+
+    private Integer id_car;
 }

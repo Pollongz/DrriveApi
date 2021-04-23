@@ -1,7 +1,5 @@
 package com.drrive.DrriveApi.service;
 
-import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.entity.User;
 import com.drrive.DrriveApi.rest.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,8 +21,8 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public List<User> getCompanyEmployees(Company company) {
-        return userRepository.findEmployeesFromCompany(company);
+    public List<User> getCompanyEmployees(Integer id_company) {
+        return userRepository.findEmployeesFromCompany(id_company);
     }
 
     public User getUserById(Integer idUser) {

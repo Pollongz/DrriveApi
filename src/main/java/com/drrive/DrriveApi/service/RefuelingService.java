@@ -23,8 +23,8 @@ public class RefuelingService {
         return refuelingRepository.findAll();
     }
 
-    public List<Refueling> getCarsRefuelings(Car car) {
-        return refuelingRepository.findRefuelingsFromCar(car);
+    public List<Refueling> getCarsRefuelings(Integer id_car) {
+        return refuelingRepository.findRefuelingsFromCar(id_car);
     }
 
     public Refueling getRefuelingById(Integer idRefueling) {

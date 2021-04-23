@@ -1,5 +1,6 @@
 package com.drrive.DrriveApi.controller;
 
+import com.drrive.DrriveApi.dto.PhotoDto;
 import com.drrive.DrriveApi.entity.Photo;
 import com.drrive.DrriveApi.service.PhotoService;
 import org.springframework.beans.factory.annotation.Autowired;

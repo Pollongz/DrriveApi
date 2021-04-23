@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface UserRepository extends JpaRepository<User, Integer> {
 
-    @Query("SELECT e FROM User e WHERE e.company = ?1")
-    List<User> findEmployeesFromCompany(Company company);
+    @Query("SELECT e FROM User e WHERE e.id_company = ?1")
+    List<User> findEmployeesFromCompany(Integer id_company);
 }

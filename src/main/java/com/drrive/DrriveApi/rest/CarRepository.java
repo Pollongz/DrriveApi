@@ -11,8 +11,8 @@ import java.util.List;
 @Repository
 public interface CarRepository extends JpaRepository<Car, Integer> {
 
-    @Query("SELECT c FROM Car c WHERE c.company = ?1")
-    List<Car> findCarsFromCompany(Company company);
+    @Query("SELECT c FROM Car c WHERE c.id_company = ?1")
+    List<Car> findCarsFromCompany(Integer id_company);
 
     @Query("SELECT f FROM Car f WHERE f.isTaken = 0")
     List<Car> findAvailableCars();
