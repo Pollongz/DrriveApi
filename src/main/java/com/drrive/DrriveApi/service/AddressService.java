@@ -65,8 +65,8 @@ public class AddressService {
 
                 if (email != null &&
                 email.length() > 0 &&
-                !Objects.equals(loginData.getEmail(), email)) {
-            loginData.setEmail(email);
+                !Objects.equals(user.getEmail(), email)) {
+            user.setEmail(email);
         }
 
          */

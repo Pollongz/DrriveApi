@@ -1,12 +1,11 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @Entity
@@ -22,18 +21,17 @@ public class Company implements Serializable {
     @Column(name = "nip")
     private String nip;
 
+    private transient Integer AddressId;
+
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_address")
-    @JsonIgnore
-    private transient Address address;
+    private Address address;
 
-    private Integer id_address;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id_company", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.ALL)
     @JsonBackReference(value = "companyCars")
-    private Set<Car> cars;
+    private List<Car> cars;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id_company", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "company", cascade = CascadeType.ALL)
     @JsonBackReference(value = "companyUsers")
-    private Set<User> users;
+    private List<UsersData> users;
 }

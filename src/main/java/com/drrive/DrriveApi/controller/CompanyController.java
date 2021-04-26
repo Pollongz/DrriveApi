@@ -1,13 +1,11 @@
 package com.drrive.DrriveApi.controller;
 
-import com.drrive.DrriveApi.entity.Address;
 import com.drrive.DrriveApi.entity.Car;
 import com.drrive.DrriveApi.entity.Company;
-import com.drrive.DrriveApi.entity.User;
-import com.drrive.DrriveApi.service.AddressService;
+import com.drrive.DrriveApi.entity.UsersData;
 import com.drrive.DrriveApi.service.CarService;
 import com.drrive.DrriveApi.service.CompanyService;
-import com.drrive.DrriveApi.service.UserService;
+import com.drrive.DrriveApi.service.UsersDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,13 +17,13 @@ public class CompanyController {
 
     private final CompanyService companyService;
     private final CarService carService;
-    private final UserService userService;
+    private final UsersDataService usersDataService;
 
     @Autowired
-    public CompanyController(CompanyService companyService, CarService carService, UserService userService) {
+    public CompanyController(CompanyService companyService, CarService carService, UsersDataService usersDataService) {
         this.companyService = companyService;
         this.carService = carService;
-        this.userService = userService;
+        this.usersDataService = usersDataService;
     }
 
     @GetMapping
@@ -38,14 +36,14 @@ public class CompanyController {
         return companyService.getCompaniesById(idCompany);
     }
 
-    @GetMapping(path = "/{id_company}/cars")
-    public List<Car> getCompanyCars(@PathVariable Integer id_company) {
-        return carService.getCompanyCars(id_company);
+    @GetMapping(path = "/{company}/cars")
+    public List<Car> getCompanyCars(@PathVariable Company company) {
+        return carService.getCompanyCars(company);
     }
 
-    @GetMapping(path = "/{id_company}/employees")
-    public List<User> getCompanyEmployees(@PathVariable Integer id_company) {
-        return userService.getCompanyEmployees(id_company);
+    @GetMapping(path = "/{company}/employees")
+    public List<UsersData> getCompanyEmployees(@PathVariable Company company) {
+        return usersDataService.getCompanyEmployees(company);
     }
 
     @PostMapping

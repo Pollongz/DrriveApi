@@ -1,7 +1,6 @@
 package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.DamageRepository;
@@ -14,18 +13,21 @@ import java.util.List;
 public class DamageService {
     
     private final DamageRepository damageRepository;
+    private final CarRepository carRepository;
+
 
     @Autowired
-    public DamageService(DamageRepository damageRepository) {
+    public DamageService(DamageRepository damageRepository, CarRepository carRepository) {
         this.damageRepository = damageRepository;
+        this.carRepository = carRepository;
     }
 
     public List<Damage> getDamages() {
         return damageRepository.findAll();
     }
 
-    public List<Damage> getCarsDamages(Integer id_car) {
-        return damageRepository.findDamagesFromCar(id_car);
+    public List<Damage> getCarsDamages(Car car) {
+        return damageRepository.findDamagesFromCar(car);
     }
 
     public Damage getDamagesById(Integer idDamage) {
@@ -36,6 +38,7 @@ public class DamageService {
     }
 
     public void addNewDamage(Damage damage) {
+        damage.setCar(carRepository.getOne(damage.getCarId()));
         damageRepository.save(damage);
     }
 

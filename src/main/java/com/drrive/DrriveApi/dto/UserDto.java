@@ -11,10 +11,10 @@ import lombok.Setter;
 @NoArgsConstructor
 public class UserDto {
 
-    private Integer idUser;
+    private Integer idUserData;
     private String firstName;
     private String lastName;
     private String phoneNumber;
-    private Integer loginData;
+    private Integer user;
     private Integer company;
 }

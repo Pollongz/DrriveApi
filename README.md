@@ -1,6 +1,5 @@
 # DrriveApi
- RESTful API for a fleet car management system
-
+ REST API for a fleet car management system
 
 
 
@@ -21,14 +20,12 @@
 `/damage` - get a list of damages<br />
 `/damage/{id}` - get a specific damage<br />
 `/damage/{id}/photos` - get a list of photos on a specific damage<br />
-`/login-data` - get a list of adresses<br />
-`/login-data/{id}` - get a specific login-data of a user<br />
 `/refueling` - get a list of refuelings<br />
 `/refueling/{id}` - get a specific refueling<br />
 `/services` - get a list of services<br />
 `/services/{id}` - get specific service<br />
-`/user` - get a list of users<br />
-`/user/{id}` - get specific User<br />
+`/usersData` - get a list of users<br />
+`/usersData/{id}` - get a specific user<br />
 
 <h1>POST</h1>
 
@@ -36,20 +33,18 @@
 `/car` - add cars<br />
 `/company` - add companies<br />
 `/damage` - add damages<br />
-`/login-data` - create account<br />
 `/refueling` - add refueling<br />
 `/services` - add service<br />
-`/photo`- add photos(created damage first)<br />
-`/user` - add users personal data(create login-data first)<br />
+`/photo`- add photos(create damage first)<br />
+`/usersData` - add users personal data(create user first)<br />
 
 <h1>DELETE</h1>
 
 `/address/{id}` - delete specific address<br />
 `/car/{id}` - delete specific car<br />
-`/company/{id}` - deletet specific company<br />
+`/company/{id}` - delete specific company<br />
 `/damage/{id}` - delete specific damage<br />
 `/photo/{id}` - delete specific photo<br />
-`/login-data/{id}` - delete specific login-data of a user<br />
 `/refueling/{id}` - delete specific refueling<br />
 `/services/{id}` - delete specific service<br />
-`/user/{id}` - get specific User<br />
+`/usersData/{id}` - delete specific UsersData<br />

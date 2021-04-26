@@ -1,8 +1,8 @@
 package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Services;
+import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.ServicesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,18 +13,20 @@ import java.util.List;
 public class ServicesService {
     
     private final ServicesRepository servicesRepository;
+    private final CarRepository carRepository;
 
     @Autowired
-    public ServicesService(ServicesRepository servicesRepository) {
+    public ServicesService(ServicesRepository servicesRepository, CarRepository carRepository) {
         this.servicesRepository = servicesRepository;
+        this.carRepository = carRepository;
     }
 
     public List<Services> getServices() {
         return servicesRepository.findAll();
     }
 
-    public List<Services> getCarsServices(Integer id_car) {
-        return servicesRepository.findServicesFromCar(id_car);
+    public List<Services> getCarsServices(Car car) {
+        return servicesRepository.findServicesFromCar(car);
     }
 
     public Services getServicesById(Integer idServices) {
@@ -35,6 +37,7 @@ public class ServicesService {
     }
 
     public void addNewServices(Services services) {
+        services.setCar(carRepository.getOne(services.getCarId()));
         servicesRepository.save(services);
     }
 

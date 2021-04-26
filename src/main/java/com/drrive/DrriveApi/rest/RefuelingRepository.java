@@ -11,6 +11,6 @@ import java.util.List;
 @Repository
 public interface RefuelingRepository extends JpaRepository<Refueling, Integer> {
 
-    @Query("SELECT r FROM Refueling r WHERE r.id_car = ?1")
-    List<Refueling> findRefuelingsFromCar(Integer id_car);
+    @Query("SELECT r FROM Refueling r WHERE r.car = ?1")
+    List<Refueling> findRefuelingsFromCar(Car car);
 }

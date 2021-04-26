@@ -1,6 +1,5 @@
 package com.drrive.DrriveApi.service;
 
-import com.drrive.DrriveApi.entity.Address;
 import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.rest.AddressRepository;
 import com.drrive.DrriveApi.rest.CompanyRepository;
@@ -13,10 +12,12 @@ import java.util.List;
 public class CompanyService {
 
     private final CompanyRepository companyRepository;
+    private final AddressRepository addressRepository;
 
     @Autowired
-    public CompanyService(CompanyRepository companyRepository) {
+    public CompanyService(CompanyRepository companyRepository, AddressRepository addressRepository) {
         this.companyRepository = companyRepository;
+        this.addressRepository = addressRepository;
     }
 
     public List<Company> getCompanies() {
@@ -31,6 +32,7 @@ public class CompanyService {
     }
 
     public void addNewCompany(Company company) {
+        company.setAddress(addressRepository.getOne(company.getAddressId()));
         companyRepository.save(company);
     }
 

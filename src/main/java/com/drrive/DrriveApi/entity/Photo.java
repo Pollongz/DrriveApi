@@ -1,8 +1,5 @@
 package com.drrive.DrriveApi.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,11 +20,9 @@ public class Photo implements Serializable {
     @Column(name = "photo_url")
     private String photoUrl;
 
+    private transient Integer damageId;
+
     @ManyToOne
     @JoinColumn(name = "id_damage")
-    @JsonManagedReference(value = "damagePhotos")
-    @JsonIgnore
-    private transient Damage damage;
-
-    private Integer id_damage;
+    private Damage damage;
 }

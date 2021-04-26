@@ -27,10 +27,9 @@ public class Services implements Serializable {
     @Column(name = "service_date")
     private Date date;
 
+    private transient Integer carId;
+
     @ManyToOne
     @JoinColumn(name = "id_car")
-    @JsonIgnore
-    private transient Car car;
-
-    private Integer id_car;
+    private Car car;
 }

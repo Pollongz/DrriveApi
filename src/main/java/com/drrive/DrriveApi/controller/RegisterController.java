@@ -18,7 +18,7 @@
 //        this.loginDataService = loginDataService;
 //    }
 //
-//    @ModelAttribute("user")
+//    @ModelAttribute("usersData")
 //    public UserRegistrationDto userRegistrationDto() {
 //        return new UserRegistrationDto();
 //    }
@@ -29,7 +29,7 @@
 //    }
 //
 //    @PostMapping
-//    public String registerUserAccount(@ModelAttribute("user") UserRegistrationDto registrationDto) {
+//    public String registerUserAccount(@ModelAttribute("usersData") UserRegistrationDto registrationDto) {
 //        loginDataService.save(registrationDto);
 //        return "redirect:/register?success";
 //    }

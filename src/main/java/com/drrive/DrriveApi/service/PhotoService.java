@@ -1,10 +1,9 @@
 package com.drrive.DrriveApi.service;
 
-import com.drrive.DrriveApi.dto.PhotoDto;
 import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Photo;
+import com.drrive.DrriveApi.rest.DamageRepository;
 import com.drrive.DrriveApi.rest.PhotoRepository;
-import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,18 +13,21 @@ import java.util.List;
 public class PhotoService {
     
     private final PhotoRepository photoRepository;
+    private final DamageRepository damageRepository;
+
 
     @Autowired
-    public PhotoService(PhotoRepository photoRepository) {
+    public PhotoService(PhotoRepository photoRepository, DamageRepository damageRepository) {
         this.photoRepository = photoRepository;
+        this.damageRepository = damageRepository;
     }
 
     public List<Photo> getPhotos() {
         return photoRepository.findAll();
     }
 
-    public List<Photo> getDamagesPhotos(Integer id_damage) {
-        return photoRepository.findPhotosFromDamage(id_damage);
+    public List<Photo> getDamagesPhotos(Damage damage) {
+        return photoRepository.findPhotosFromDamage(damage);
     }
 
     public Photo getPhotoById(Integer idPhoto) {
@@ -35,8 +37,9 @@ public class PhotoService {
                 ));
     }
 
-    public Photo addNewPhoto(Photo photo) {
-        return photoRepository.save(photo);
+    public void addNewPhoto(Photo photo) {
+        photo.setDamage(damageRepository.getOne(photo.getDamageId()));
+        photoRepository.save(photo);
     }
 
     public void deletePhoto(Integer idPhoto) {

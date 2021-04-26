@@ -3,6 +3,7 @@ package com.drrive.DrriveApi.service;
 import com.drrive.DrriveApi.entity.Car;
 import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.rest.CarRepository;
+import com.drrive.DrriveApi.rest.CompanyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,18 +13,20 @@ import java.util.List;
 public class CarService {
 
     private final CarRepository carRepository;
+    private final CompanyRepository companyRepository;
 
     @Autowired
-    public CarService(CarRepository carRepository) {
+    public CarService(CarRepository carRepository, CompanyRepository companyRepository) {
         this.carRepository = carRepository;
+        this.companyRepository = companyRepository;
     }
 
     public List<Car> getCars() {
         return carRepository.findAll();
     }
 
-    public List<Car> getCompanyCars(Integer id_company) {
-        return carRepository.findCarsFromCompany(id_company);
+    public List<Car> getCompanyCars(Company company) {
+        return carRepository.findCarsFromCompany(company);
     }
 
     public List<Car> getAvailableCars() {
@@ -42,6 +45,7 @@ public class CarService {
     }
 
     public void addNewCar(Car car) {
+        car.setCompany(companyRepository.getOne(car.getCompanyId()));
         carRepository.save(car);
     }
 

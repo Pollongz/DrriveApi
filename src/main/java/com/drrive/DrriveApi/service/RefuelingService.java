@@ -1,8 +1,8 @@
 package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Refueling;
+import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.RefuelingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,18 +13,20 @@ import java.util.List;
 public class RefuelingService {
     
     private final RefuelingRepository refuelingRepository;
+    private final CarRepository carRepository;
 
     @Autowired
-    public RefuelingService(RefuelingRepository refuelingRepository) {
+    public RefuelingService(RefuelingRepository refuelingRepository, CarRepository carRepository) {
         this.refuelingRepository = refuelingRepository;
+        this.carRepository = carRepository;
     }
 
     public List<Refueling> getRefuelings() {
         return refuelingRepository.findAll();
     }
 
-    public List<Refueling> getCarsRefuelings(Integer id_car) {
-        return refuelingRepository.findRefuelingsFromCar(id_car);
+    public List<Refueling> getCarsRefuelings(Car car) {
+        return refuelingRepository.findRefuelingsFromCar(car);
     }
 
     public Refueling getRefuelingById(Integer idRefueling) {
@@ -35,6 +37,7 @@ public class RefuelingService {
     }
 
     public void addNewRefueling(Refueling refueling) {
+        refueling.setCar(carRepository.getOne(refueling.getCarId()));
         refuelingRepository.save(refueling);
     }
 

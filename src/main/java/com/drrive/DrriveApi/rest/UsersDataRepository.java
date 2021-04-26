@@ -9,5 +9,8 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public interface CompanyRepository extends JpaRepository<Company, Integer> {
+public interface UsersDataRepository extends JpaRepository<UsersData, Integer> {
+
+    @Query("SELECT e FROM UsersData e WHERE e.company = ?1")
+    List<UsersData> findEmployeesFromCompany(Company company);
 }

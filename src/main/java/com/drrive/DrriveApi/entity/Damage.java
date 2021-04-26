@@ -1,12 +1,11 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -22,14 +21,13 @@ public class Damage implements Serializable {
     @Column(name = "description")
     private String description;
 
+    private transient Integer carId;
+
     @ManyToOne
     @JoinColumn(name = "id_car")
-    @JsonIgnore
-    private transient Car car;
+    private Car car;
 
-    private Integer id_car;
-
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "id_damage", cascade = CascadeType.ALL)
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "damage", cascade = CascadeType.ALL)
     @JsonBackReference(value = "damagePhotos")
-    private Set<Photo> photos;
+    private List<Photo> photos;
 }
