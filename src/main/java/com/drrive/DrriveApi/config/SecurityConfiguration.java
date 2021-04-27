@@ -1,5 +1,8 @@
 package com.drrive.DrriveApi.config;
 
+import com.drrive.DrriveApi.rest.UserRepository;
+import com.drrive.DrriveApi.security.JwtAuthenticationFilter;
+import com.drrive.DrriveApi.security.JwtAuthorizationFilter;
 import com.drrive.DrriveApi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -9,18 +12,20 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private UserService userService;
+    private UserRepository userRepository;
 
     @Autowired
-    public SecurityConfiguration(UserService userService) {
+    public SecurityConfiguration(UserService userService, UserRepository userRepository) {
         this.userService = userService;
+        this.userRepository = userRepository;
     }
 
     @Bean
@@ -43,23 +48,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/").authenticated()
-                .antMatchers("/register").permitAll()
-                .antMatchers("/car").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers("/dashboard/**").hasAnyRole("ADMIN", "MANAGER")
-                .antMatchers("/admin/**").hasRole("MANAGER")
-                .anyRequest().authenticated()
+        http
+                .csrf().disable()
+                .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
-                .and()
-                .logout()
-                .invalidateHttpSession(true)
-                .clearAuthentication(true)
-                .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                .logoutSuccessUrl("/login?logout")
-                .permitAll();
+                .addFilter(new JwtAuthenticationFilter(authenticationManager()))
+                .addFilter(new JwtAuthorizationFilter(authenticationManager(), this.userRepository))
+                .authorizeRequests()
+                .antMatchers("/login").permitAll()
+                .antMatchers("/car").hasAnyRole("USER", "MANAGER", "ADMIN")
+                .antMatchers("/address").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers("/usersData").hasRole("ADMIN");
     }
 }
