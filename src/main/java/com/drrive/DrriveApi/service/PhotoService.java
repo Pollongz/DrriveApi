@@ -50,16 +50,14 @@ public class PhotoService {
         photoRepository.deleteById(idPhoto);
     }
 
-
-    //not used
-    public Photo updatePhoto(Photo photo) {
+    public void updatePhoto(Photo photo) {
         Photo existingPhoto = photoRepository.findById(photo.getIdPhoto())
                 .orElseThrow(() -> new IllegalStateException(
                         "Photo with id: " + photo.getIdPhoto() + "doesn't exist."
                 ));
         existingPhoto.setPhotoUrl(photo.getPhotoUrl());
-        //existingPhoto.setDamage(photo.getDamage());
+        existingPhoto.setDamage(damageRepository.getOne(photo.getDamageId()));
 
-        return photoRepository.save(existingPhoto);
+        photoRepository.save(existingPhoto);
     }
 }

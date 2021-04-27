@@ -57,7 +57,7 @@ public class DamageService {
                         "Damage with id: " + damage.getIdDamage() + "doesn't exist."
                 ));
         existingDamage.setDescription(damage.getDescription());
-        existingDamage.setCar(damage.getCar());
+        existingDamage.setCar(carRepository.getOne(damage.getCarId()));
 
         damageRepository.save(existingDamage);
     }

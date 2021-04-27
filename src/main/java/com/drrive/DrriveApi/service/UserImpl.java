@@ -1,120 +1,134 @@
-//package com.drrive.DrriveApi.service;
-//
-//import com.drrive.DrriveApi.dto.UserRegistrationDto;
-//import com.drrive.DrriveApi.entity.User;
-//import com.drrive.DrriveApi.entity.Role;
-//import com.drrive.DrriveApi.rest.LoginDataRepository;
-//import com.drrive.DrriveApi.rest.RoleRepository;
-//import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
-//import org.springframework.security.core.userdetails.UsernameNotFoundException;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-//import org.springframework.stereotype.Service;
-//
-//import java.util.*;
-//
-//
-//@Service
-//public class LoginDataImpl implements com.drrive.DrriveApi.rest.LoginDataService {
-//
-//    private LoginDataRepository loginDataRepository;
+package com.drrive.DrriveApi.service;
+
+import com.drrive.DrriveApi.entity.User;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import java.util.*;
+
+public class UserImpl implements UserDetails {
+
+    private User user;
+
+    public UserImpl(User user) {
+        this.user = user;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+
+        List<GrantedAuthority> authorities = new ArrayList<>();
+
+        this.user.getRoleList().forEach( role -> {
+            GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + role);
+            authorities.add(authority);
+        });
+
+        return authorities;
+    }
+
+    @Override
+    public String getPassword() {
+        return this.user.getPassword();
+    }
+
+    @Override
+    public String getUsername() {
+        return this.user.getUsername();
+    }
+
+    @Override
+    public boolean isAccountNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isAccountNonLocked() {
+        return true;
+    }
+
+    @Override
+    public boolean isCredentialsNonExpired() {
+        return true;
+    }
+
+    @Override
+    public boolean isEnabled() {
+        return true;
+    }
+
+//    private UserRepository userRepository;
 //    private RoleRepository roleRepository;
 //
 //    @Autowired
 //    private BCryptPasswordEncoder passwordEncoder;
 //
-//    public LoginDataImpl(LoginDataRepository loginDataRepository, RoleRepository roleRepository) {
-//        this.loginDataRepository = loginDataRepository;
+//    public UserImpl(UserRepository userRepository, RoleRepository roleRepository) {
+//        this.userRepository = userRepository;
 //        this.roleRepository = roleRepository;
 //    }
 //
-////    @Override
-////    public User save(User user) {
-////
-////        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
-////
-////        User usersData = new User(
-////                user.getUsername(),
-////                passwordEncoder.encode(user.getPassword()),
-////                user.getEmail(),
-////                user.setRoles(adminRole)
-////        );
-////
-////        return loginDataRepository.save(usersData);
-////    }
-//
 //    @Override
-//    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-//        Optional<User> usersData = loginDataRepository.findByUsername(username);
+//    public User save(User user) {
 //
-//        usersData.orElseThrow(() -> new UsernameNotFoundException("UsersData " + username + " not found."));
+//        Role adminRole = roleRepository.findByName("ROLE_ADMIN");
 //
-//        return new org.springframework.security.core.userdetails.UsersData(
-//                usersData.get().getUsername(),
-//                usersData.get().getPassword(),
-//                getAuthorities(usersData.get().getRoles()));
+//        User user1 = new User(
+//                user.getUsername(),
+//                passwordEncoder.encode(user.getPassword()),
+//                user.getEmail(),
+//                user.setRole(new Role("ROLE_ADMIN")),
+//                user.getRoleId(new Role("ROLE_ADMIN"))
+//        );
+//
+//        return userRepository.save(user);
 //    }
 //
+//    public Collection<? extends GrantedAuthority> getAuthorities() {
 //
-//    private Collection<? extends GrantedAuthority> getAuthorities(Collection<Role> roles) {
+//        return getRoles()
+//                .stream()
+//                .map(role -> new SimpleGrantedAuthority("ROLE_" + role.getRole()))
+//                .collect(Collectors.toList());
+//    }
+
+//    private final LoginDataRepository loginDataRepository;
 //
-//        List<GrantedAuthority> authorities = new ArrayList<>();
+//    @Autowired
+//    public LoginDataService(LoginDataRepository loginDataRepository) {
+//        this.loginDataRepository = loginDataRepository;
+//    }
 //
-//        for (Role role: roles) {
-//            authorities.add(new SimpleGrantedAuthority(role.getRoleName()));
+//    public List<User> getLoginData() {
+//        return loginDataRepository.findAll();
+//    }
+//
+//    public User getLoginDataById(Integer idLoginData) {
+//        return loginDataRepository.findById(idLoginData)
+//                .orElseThrow(() -> new IllegalStateException(
+//                        "UsersData with id: " + idLoginData + "doesn't exist."
+//                ));
+//    }
+//
+//    public void deleteLoginData(Integer idLoginData) {
+//        boolean exists = loginDataRepository.existsById(idLoginData);
+//        if (!exists) {
+//            throw new IllegalStateException("UsersData with id: " + idLoginData + "doesn't exist.");
 //        }
-//        return authorities;
+//        loginDataRepository.deleteById(idLoginData);
 //    }
 //
+//    public void updateLoginData(User user) {
+//        User existingLoginData = loginDataRepository.findById(user.getIdLoginData())
+//                .orElseThrow(() -> new IllegalStateException(
+//                        "UsersData with id: " + user.getIdLoginData() + "doesn't exist."
+//                ));
+//        existingLoginData.setUsername(user.getUsername());
+//        existingLoginData.setPassword(user.getPassword());
+//        existingLoginData.setEmail(user.getEmail());
+//        existingLoginData.setRole(user.getRole());
 //
-////    private Collection<? extends GrantedAuthority> mapRolesToAuthorities(Collection<Role> roles) {
-////
-////         Collection<? extends GrantedAuthority> authorities = roles.stream()
-////                 .map(role -> new SimpleGrantedAuthority(role.getRoleName()))
-////                 .collect(Collectors.toList());
-////
-////         return authorities;
-////    }
-//
-//
-////    private final LoginDataRepository loginDataRepository;
-////
-////    @Autowired
-////    public LoginDataService(LoginDataRepository loginDataRepository) {
-////        this.loginDataRepository = loginDataRepository;
-////    }
-////
-////    public List<User> getLoginData() {
-////        return loginDataRepository.findAll();
-////    }
-////
-////    public User getLoginDataById(Integer idLoginData) {
-////        return loginDataRepository.findById(idLoginData)
-////                .orElseThrow(() -> new IllegalStateException(
-////                        "UsersData with id: " + idLoginData + "doesn't exist."
-////                ));
-////    }
-////
-////    public void deleteLoginData(Integer idLoginData) {
-////        boolean exists = loginDataRepository.existsById(idLoginData);
-////        if (!exists) {
-////            throw new IllegalStateException("UsersData with id: " + idLoginData + "doesn't exist.");
-////        }
-////        loginDataRepository.deleteById(idLoginData);
-////    }
-////
-////    public void updateLoginData(User user) {
-////        User existingLoginData = loginDataRepository.findById(user.getIdLoginData())
-////                .orElseThrow(() -> new IllegalStateException(
-////                        "UsersData with id: " + user.getIdLoginData() + "doesn't exist."
-////                ));
-////        existingLoginData.setUsername(user.getUsername());
-////        existingLoginData.setPassword(user.getPassword());
-////        existingLoginData.setEmail(user.getEmail());
-////        existingLoginData.setRole(user.getRole());
-////
-////        loginDataRepository.save(existingLoginData);
-////    }
-//}
+//        loginDataRepository.save(existingLoginData);
+//    }
+}

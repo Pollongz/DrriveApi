@@ -5,11 +5,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("manager")
+@RequestMapping("dashboard")
 public class ManagerController {
 
     @GetMapping("index")
     public String index() {
-        return "admin/index";
+        return "dashboard/index";
     }
 }

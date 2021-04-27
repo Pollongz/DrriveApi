@@ -71,7 +71,7 @@ public class CarService {
         existingCar.setEnginePower(car.getEnginePower());
         existingCar.setPlateNumber(car.getPlateNumber());
         existingCar.setIsTaken(car.getIsTaken());
-        existingCar.setCompany(car.getCompany());
+        existingCar.setCompany(companyRepository.getOne(car.getCompanyId()));
 
         carRepository.save(existingCar);
     }

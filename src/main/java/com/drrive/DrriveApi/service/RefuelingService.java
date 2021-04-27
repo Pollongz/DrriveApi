@@ -59,7 +59,7 @@ public class RefuelingService {
         existingRefueling.setFuelCost(refueling.getFuelCost());
         existingRefueling.setMileage(refueling.getMileage());
         existingRefueling.setDate(refueling.getDate());
-        existingRefueling.setCar(refueling.getCar());
+        existingRefueling.setCar(carRepository.getOne(refueling.getCarId()));
 
         refuelingRepository.save(existingRefueling);
     }

@@ -52,7 +52,7 @@ public class CompanyService {
                 ));
         existingCompany.setName(company.getName());
         existingCompany.setNip(company.getNip());
-        existingCompany.setAddress(company.getAddress());
+        existingCompany.setAddress(addressRepository.getOne(company.getAddressId()));
 
         companyRepository.save(existingCompany);
     }

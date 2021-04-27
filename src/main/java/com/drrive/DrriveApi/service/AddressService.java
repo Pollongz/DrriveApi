@@ -1,14 +1,11 @@
 package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Address;
-import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.rest.AddressRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 
 @Service
 public class AddressService {
@@ -28,11 +25,6 @@ public class AddressService {
         return addressRepository.findById(idAddress).orElse(null);
     }
 
-//    customized query
-//    public List<Address> getAddressByCity(String city) {
-//        return addressRepository.findByStreet(city);
-//    }
-
     public void addNewAddres(Address address) {
         addressRepository.save(address);
     }
@@ -46,7 +38,7 @@ public class AddressService {
         addressRepository.deleteById(idAddress);
     }
 
-    public Address updateAddress(Address address) {
+    public void updateAddress(Address address) {
         Address existingAddress = addressRepository.findById(address.getIdAddress())
                 .orElseThrow(() -> new IllegalStateException(
                         "Address with id: " + address.getIdAddress() + "doesn't exist."
@@ -57,18 +49,6 @@ public class AddressService {
         existingAddress.setStreet(address.getStreet());
         existingAddress.setBuildingNumber(address.getBuildingNumber());
 
-        return addressRepository.save(existingAddress);
+        addressRepository.save(existingAddress);
     }
-
-        /*
-            for updating users login data and checking if email doesnt exist
-
-                if (email != null &&
-                email.length() > 0 &&
-                !Objects.equals(user.getEmail(), email)) {
-            user.setEmail(email);
-        }
-
-         */
-
 }

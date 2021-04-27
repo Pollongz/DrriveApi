@@ -1,11 +1,12 @@
 package com.drrive.DrriveApi.entity;
 
 import lombok.*;
-//import org.springframework.security.core.GrantedAuthority;
-//import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -17,7 +18,7 @@ public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_users")
-    private Integer idLoginData;
+    private Integer idUsers;
     @Column(name = "username")
     private String username;
     @Column(name = "password")
@@ -25,9 +26,13 @@ public class User implements Serializable {
     @Column(name = "email")
     private String email;
 
-    private transient Integer RoleId;
+    @Column(name = "role")
+    private String role = "";
 
-    @ManyToOne
-    @JoinColumn(name = "id_role")
-    private Role role;
+    public List<String> getRoleList() {
+        if (this.role.length() > 0) {
+            return Arrays.asList(this.role.split(","));
+        }
+        return new ArrayList<>();
+    }
 }

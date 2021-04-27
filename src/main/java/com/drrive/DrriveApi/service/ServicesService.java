@@ -49,7 +49,7 @@ public class ServicesService {
         servicesRepository.deleteById(idServices);
     }
 
-    public Services updateServices(Services services) {
+    public void updateServices(Services services) {
         Services existingServices = servicesRepository.findById(services.getIdServices())
                 .orElseThrow(() -> new IllegalStateException(
                         "Service with id: " + services.getIdServices() + "doesn't exist."
@@ -58,8 +58,8 @@ public class ServicesService {
         existingServices.setServiceCost(services.getServiceCost());
         existingServices.setMileage(services.getMileage());
         existingServices.setDate(services.getDate());
-        existingServices.setCar(services.getCar());
+        existingServices.setCar(carRepository.getOne(services.getCarId()));
 
-        return servicesRepository.save(existingServices);
+        servicesRepository.save(existingServices);
     }
 }
