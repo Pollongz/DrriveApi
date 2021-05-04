@@ -1,9 +1,15 @@
 # DrriveApi
- REST API for a fleet car management system
 
+ Backend created with Spring boot and Spring security for Fleet management system used in Web app and Mobile app. 
 
+<h1>Feautures</h1>
 
-<h1>GET</h1>
+- JWT Authentication
+- Role based Authorization
+- REST API
+
+<h1>Api requests</h1>
+<h2>GET</h2>
 
 `/address` - get a list of adresses<br />
 `/address/{id}` - get specific address<br />
@@ -27,7 +33,7 @@
 `/usersData` - get a list of users<br />
 `/usersData/{id}` - get a specific user<br />
 
-<h1>POST</h1>
+<h2>POST</h2>
 
 `/address` - add adress<br />
 `/car` - add cars<br />
@@ -38,7 +44,7 @@
 `/photo`- add photos(create damage first)<br />
 `/usersData` - add users personal data(create user first)<br />
 
-<h1>DELETE</h1>
+<h2>DELETE</h2>
 
 `/address/{id}` - delete specific address<br />
 `/car/{id}` - delete specific car<br />
