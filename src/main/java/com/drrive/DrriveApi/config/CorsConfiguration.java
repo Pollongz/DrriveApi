@@ -16,7 +16,9 @@ public class CorsConfiguration {
                 registry.addMapping("/**")
                         .allowedMethods("*")
                         .allowedOrigins("http://localhost:3000")
-                        .allowedHeaders("*");
+                        .allowedHeaders("*")
+                        .exposedHeaders("*")
+                        .allowCredentials(false).maxAge(3600);
             }
         };
     }
