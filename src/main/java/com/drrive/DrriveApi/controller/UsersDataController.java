@@ -13,12 +13,10 @@ import java.util.List;
 public class UsersDataController {
 
     private final UsersDataService usersDataService;
-    private final CompanyService companyService;
 
     @Autowired
-    public UsersDataController(UsersDataService usersDataService, CompanyService companyService) {
+    public UsersDataController(UsersDataService usersDataService) {
         this.usersDataService = usersDataService;
-        this.companyService = companyService;
     }
 
     @GetMapping

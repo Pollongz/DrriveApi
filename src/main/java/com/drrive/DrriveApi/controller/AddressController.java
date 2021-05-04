@@ -43,5 +43,4 @@ public class AddressController {
         addressService.updateAddress(address);
         return "Address edited successfully!";
     }
-
 }

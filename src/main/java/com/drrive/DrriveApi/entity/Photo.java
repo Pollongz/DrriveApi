@@ -1,5 +1,6 @@
 package com.drrive.DrriveApi.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Photo implements Serializable {
     private transient Integer damageId;
 
     @ManyToOne
+    @JsonIgnore
     @JoinColumn(name = "id_damage")
     private Damage damage;
 }
