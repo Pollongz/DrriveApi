@@ -1,7 +1,6 @@
 package com.drrive.DrriveApi.service;
 
-import com.drrive.DrriveApi.entity.Company;
-import com.drrive.DrriveApi.entity.UsersData;
+import com.drrive.DrriveApi.entity.*;
 import com.drrive.DrriveApi.rest.CompanyRepository;
 import com.drrive.DrriveApi.rest.UserRepository;
 import com.drrive.DrriveApi.rest.UsersDataRepository;
@@ -30,6 +29,10 @@ public class UsersDataService {
 
     public List<UsersData> getCompanyEmployees(Company company) {
         return usersDataRepository.findEmployeesFromCompany(company);
+    }
+
+    public UsersData getUsersData(User user) {
+        return usersDataRepository.findUsersData(user);
     }
 
     public UsersData getUserById(Integer idUserData) {

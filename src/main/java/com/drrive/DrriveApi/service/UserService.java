@@ -32,8 +32,14 @@ public class UserService implements UserDetailsService {
         return new UserImpl(user);
     }
 
-    public void addNewUser(User user) {
+    public User addNewUser(User user) {
         user.setPassword(passwordEncoder.encode(user.getPassword()));
-        userRepository.save(user);
+        return userRepository.save(user);
+    }
+
+    public User findByUsername(String username) {
+        User user = userRepository.findByUsername(username);
+
+        return user;
     }
 }

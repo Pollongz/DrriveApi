@@ -1,7 +1,6 @@
 package com.drrive.DrriveApi.controller;
 
 import com.drrive.DrriveApi.entity.UsersData;
-import com.drrive.DrriveApi.service.CompanyService;
 import com.drrive.DrriveApi.service.UsersDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
