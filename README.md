@@ -32,6 +32,9 @@
 `/services/{id}` - get specific service<br />
 `/usersData` - get a list of users<br />
 `/usersData/{id}` - get a specific user<br />
+`/user` - username of currently logged user<br />
+`/user/{username}` - get user by username<br />
+`/user/{username}/usersdata` - users data of an user<br />
 
 <h2>POST</h2>
 
@@ -43,6 +46,7 @@
 `/services` - add service<br />
 `/photo`- add photos(create damage first)<br />
 `/usersData` - add users personal data(create user first)<br />
+`/user`- add user<br />
 
 <h2>DELETE</h2>
 
