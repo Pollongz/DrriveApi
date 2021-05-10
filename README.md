@@ -34,7 +34,7 @@
 `/usersData/{id}` - get a specific user<br />
 `/user` - username of currently logged user<br />
 `/user/{username}` - get user by username<br />
-`/user/{userId}/usersdata` - users data of an user<br />
+`/user/{id}/usersdata` - users data of an user<br />
 
 <h2>POST</h2>
 
