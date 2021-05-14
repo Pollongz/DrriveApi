@@ -18,11 +18,13 @@
 `/car/{id}/damages` - get a list of damages on a specific car<br />
 `/car/{id}/refuelings` - get a list of refuelings on a specific car<br />
 `/car/{id}/services` - get a list of services on a specific car<br />
+`/car/{id}/planned` - get a list of planned services on a specific car<br />
 `/car/available` - get a list of available cars<br />
 `/car/taken` - get a list of taken cars<br />
 `/company` - get a list of companies<br />
-`/company/{id}/cars` - get a list of cars on a specific company<br />
-`/company/{id}/employees` - get a list of employees on a specific company<br />
+`/company/{id}/cars` - get a list of cars from a specific company<br />
+`/company/{id}/employees` - get a list of employees from a specific company<br />
+`/company/{id}/posts` - get a list of posts from a specific company<br />
 `/damage` - get a list of damages<br />
 `/damage/{id}` - get a specific damage<br />
 `/damage/{id}/photos` - get a list of photos on a specific damage<br />
@@ -35,6 +37,10 @@
 `/user` - username of currently logged user<br />
 `/user/{username}` - get user by username<br />
 `/user/{username}/usersdata` - users data of an user<br />
+`/posts` - get a list of posts<br />
+`/posts/{id}` - get a specific post<br />
+`/planned` - get a list of planned services<br />
+`/planned/{id}` - get a specific planned service<br />
 
 <h2>POST</h2>
 
@@ -47,6 +53,8 @@
 `/photo`- add photos(create damage first)<br />
 `/usersData` - add users personal data(create user first)<br />
 `/user`- add user<br />
+`/posts`- add user<br />
+`/planned`- add planned service<br />
 
 <h2>DELETE</h2>
 
@@ -58,3 +66,5 @@
 `/refueling/{id}` - delete specific refueling<br />
 `/services/{id}` - delete specific service<br />
 `/usersData/{id}` - delete specific UsersData<br />
+`/posts/{id}` - delete specific post<br />
+`/planned/{id}` - delete specific planned service<br />

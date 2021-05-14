@@ -1,10 +1,7 @@
 package com.drrive.DrriveApi.controller;
 
 import com.drrive.DrriveApi.entity.*;
-import com.drrive.DrriveApi.service.CarService;
-import com.drrive.DrriveApi.service.DamageService;
-import com.drrive.DrriveApi.service.RefuelingService;
-import com.drrive.DrriveApi.service.ServicesService;
+import com.drrive.DrriveApi.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -18,13 +15,15 @@ public class CarController {
     private final DamageService damageService;
     private final RefuelingService refuelingService;
     private final ServicesService servicesService;
+    private final PlannedServicesService plannedServicesService;
 
     @Autowired
-    public CarController(CarService carService, DamageService damageService, RefuelingService refuelingService, ServicesService servicesService) {
+    public CarController(CarService carService, DamageService damageService, RefuelingService refuelingService, ServicesService servicesService, PlannedServicesService plannedServicesService) {
         this.carService = carService;
         this.damageService = damageService;
         this.refuelingService = refuelingService;
         this.servicesService = servicesService;
+        this.plannedServicesService = plannedServicesService;
     }
 
     @GetMapping
@@ -45,6 +44,11 @@ public class CarController {
     @GetMapping(path = "/{car}/services")
     public List<Services> getCarsServices(@PathVariable Car car) {
         return servicesService.getCarsServices(car);
+    }
+
+    @GetMapping(path = "/{car}/planned")
+    public List<PlannedService> getCarsPlannedServices(@PathVariable Car car) {
+        return plannedServicesService.getCarsPlannedServices(car);
     }
 
     @GetMapping(path = "/available")
@@ -68,13 +72,12 @@ public class CarController {
     }
 
     @DeleteMapping(path = "/{idCar}")
-    public void deleteCar(@PathVariable Integer idCar) {
-        carService.deleteCar(idCar);
+    public String deleteCar(@PathVariable Integer idCar) {
+        return carService.deleteCar(idCar);
     }
 
     @PutMapping(path = "/{idCar}")
     public String updateCar(@RequestBody Car car) {
-        carService.updateCar(car);
-        return "Car edited successfully!";
+        return carService.updateCar(car);
     }
 }
