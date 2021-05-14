@@ -1,6 +1,7 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -26,5 +27,6 @@ public class Photo implements Serializable {
     @ManyToOne
     @JsonIgnore
     @JoinColumn(name = "id_damage")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Damage damage;
 }

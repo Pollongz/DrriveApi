@@ -1,6 +1,7 @@
 package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -27,15 +28,15 @@ public class UsersData implements Serializable {
     private transient Integer userId;
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    //@JsonIgnore
     @JoinColumn(name = "id_user")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private User user;
 
     private transient Integer companyId;
 
     @ManyToOne
-    //@JsonIgnore
     @JoinColumn(name = "id_company")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Company company;
 
 }

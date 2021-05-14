@@ -2,6 +2,7 @@ package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -34,5 +35,6 @@ public class Refueling implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "id_car")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Car car;
 }

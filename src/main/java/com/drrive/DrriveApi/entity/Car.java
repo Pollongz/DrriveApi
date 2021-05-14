@@ -2,6 +2,7 @@ package com.drrive.DrriveApi.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
@@ -48,9 +49,14 @@ public class Car implements Serializable {
     @JsonBackReference(value = "carServices")
     private List<Services> services;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "carPlannedServices")
+    private List<PlannedService> plannedServices;
+
     private transient Integer CompanyId;
 
     @ManyToOne
     @JoinColumn(name = "id_company")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Company company;
 }

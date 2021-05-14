@@ -1,33 +1,29 @@
 package com.drrive.DrriveApi.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 @Entity
-@Table(name = "services")
-public class Services implements Serializable {
+@Table(name = "planned_services")
+public class PlannedService implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "id_services")
-    private Integer idServices;
-    @Column(name = "service_type")
-    private String serviceType;
-    @Column(name = "service_cost")
-    private Float ServiceCost;
-    @Column(name = "mileage")
-    private Integer mileage;
-    @Column(name = "service_date")
+    @Column(name = "id_planned_services")
+    private Integer idPlannedService;
+    @Column(name = "description")
+    private String description;
+    @Column(name = "date")
     private Date date;
-
     private transient Integer carId;
 
     @ManyToOne

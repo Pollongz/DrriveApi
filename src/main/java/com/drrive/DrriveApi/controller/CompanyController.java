@@ -2,9 +2,11 @@ package com.drrive.DrriveApi.controller;
 
 import com.drrive.DrriveApi.entity.Car;
 import com.drrive.DrriveApi.entity.Company;
+import com.drrive.DrriveApi.entity.Post;
 import com.drrive.DrriveApi.entity.UsersData;
 import com.drrive.DrriveApi.service.CarService;
 import com.drrive.DrriveApi.service.CompanyService;
+import com.drrive.DrriveApi.service.PostService;
 import com.drrive.DrriveApi.service.UsersDataService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -18,12 +20,14 @@ public class CompanyController {
     private final CompanyService companyService;
     private final CarService carService;
     private final UsersDataService usersDataService;
+    private final PostService postService;
 
     @Autowired
-    public CompanyController(CompanyService companyService, CarService carService, UsersDataService usersDataService) {
+    public CompanyController(CompanyService companyService, CarService carService, UsersDataService usersDataService, PostService postService) {
         this.companyService = companyService;
         this.carService = carService;
         this.usersDataService = usersDataService;
+        this.postService = postService;
     }
 
     @GetMapping
@@ -44,6 +48,11 @@ public class CompanyController {
     @GetMapping(path = "/{company}/employees")
     public List<UsersData> getCompanyEmployees(@PathVariable Company company) {
         return usersDataService.getCompanyEmployees(company);
+    }
+
+    @GetMapping(path = "/{company}/posts")
+    public List<Post> getCompanyPosts(@PathVariable Company company) {
+        return postService.getCompanyPosts(company);
     }
 
     @PostMapping

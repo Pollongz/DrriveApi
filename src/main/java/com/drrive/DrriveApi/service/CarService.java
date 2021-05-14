@@ -49,16 +49,17 @@ public class CarService {
         carRepository.save(car);
     }
 
-    public void deleteCar(Integer idCar) {
+    public String deleteCar(Integer idCar) {
         boolean exists = carRepository.existsById(idCar);
         if (!exists) {
             throw new IllegalStateException("Car with id: " + idCar + "doesn't exist.");
         }
 
         carRepository.deleteById(idCar);
+        return "Car deleted successfully!";
     }
 
-    public void updateCar(Car car) {
+    public String updateCar(Car car) {
         Car existingCar = carRepository.findById(car.getIdCar())
                 .orElseThrow(() -> new IllegalStateException(
                         "Car with id: " + car.getIdCar() + "doesn't exist."
@@ -74,5 +75,6 @@ public class CarService {
         existingCar.setCompany(companyRepository.getOne(car.getCompanyId()));
 
         carRepository.save(existingCar);
+        return "Car edited successfully!";
     }
 }
