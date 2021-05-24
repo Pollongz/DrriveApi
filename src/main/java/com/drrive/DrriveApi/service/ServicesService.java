@@ -54,7 +54,7 @@ public class ServicesService {
                 .orElseThrow(() -> new IllegalStateException(
                         "Service with id: " + services.getIdServices() + "doesn't exist."
                 ));
-        existingServices.setServiceType(services.getServiceType());
+        existingServices.setDescription(services.getDescription());
         existingServices.setServiceCost(services.getServiceCost());
         existingServices.setMileage(services.getMileage());
         existingServices.setDate(services.getDate());

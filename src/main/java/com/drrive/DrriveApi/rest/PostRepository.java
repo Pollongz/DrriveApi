@@ -12,6 +12,6 @@ import java.util.List;
 @Repository
 public interface PostRepository extends JpaRepository<Post, Integer> {
 
-    @Query("SELECT p FROM Post p WHERE p.company = ?1")
+    @Query("SELECT p FROM Post p WHERE p.company = ?1 ORDER BY date DESC")
     List<Post> findPostsFromCompany(Company company);
 }

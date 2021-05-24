@@ -19,13 +19,14 @@ public class Services implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_services")
     private Integer idServices;
-    @Column(name = "service_type")
-    private String serviceType;
+    @Column(name = "description")
+    private String description;
     @Column(name = "service_cost")
     private Float ServiceCost;
     @Column(name = "mileage")
     private Integer mileage;
     @Column(name = "service_date")
+    @Temporal(TemporalType.DATE)
     private Date date;
 
     private transient Integer carId;

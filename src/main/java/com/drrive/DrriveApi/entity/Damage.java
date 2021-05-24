@@ -6,6 +6,7 @@ import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -21,6 +22,9 @@ public class Damage implements Serializable {
     private Integer idDamage;
     @Column(name = "description")
     private String description;
+    @Column(name = "damage_date")
+    @Temporal(TemporalType.DATE)
+    private Date date;
     private transient Integer carId;
 
     @ManyToOne

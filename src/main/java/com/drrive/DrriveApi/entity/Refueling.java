@@ -1,7 +1,6 @@
 package com.drrive.DrriveApi.entity;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -29,6 +28,7 @@ public class Refueling implements Serializable {
     @Column(name = "mileage")
     private Integer mileage;
     @Column(name = "refuel_date")
+    @Temporal(value = TemporalType.DATE)
     private Date date;
 
     private transient Integer carId;

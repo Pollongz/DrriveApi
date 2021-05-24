@@ -1,7 +1,5 @@
 package com.drrive.DrriveApi.controller;
 
-import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Photo;
 import com.drrive.DrriveApi.service.DamageService;

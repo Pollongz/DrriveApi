@@ -23,6 +23,7 @@ public class PlannedService implements Serializable {
     @Column(name = "description")
     private String description;
     @Column(name = "date")
+    @Temporal(TemporalType.DATE)
     private Date date;
     private transient Integer carId;
 
