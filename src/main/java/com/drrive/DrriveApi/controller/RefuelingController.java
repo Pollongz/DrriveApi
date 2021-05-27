@@ -40,7 +40,6 @@ public class RefuelingController {
 
     @PutMapping(path = "/{idRefueling}")
     public String updateRefueling(@RequestBody Refueling refueling) {
-        refuelingService.updateRefueling(refueling);
-        return "Refueling edited successfully!";
+        return refuelingService.updateRefueling(refueling);
     }
 }

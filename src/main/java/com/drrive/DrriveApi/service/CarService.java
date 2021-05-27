@@ -2,8 +2,10 @@ package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Car;
 import com.drrive.DrriveApi.entity.Company;
+import com.drrive.DrriveApi.entity.Insurance;
 import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.CompanyRepository;
+import com.drrive.DrriveApi.rest.InsuranceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,11 +16,13 @@ public class CarService {
 
     private final CarRepository carRepository;
     private final CompanyRepository companyRepository;
+    private final InsuranceRepository insuranceRepository;
 
     @Autowired
-    public CarService(CarRepository carRepository, CompanyRepository companyRepository) {
+    public CarService(CarRepository carRepository, CompanyRepository companyRepository, InsuranceRepository insuranceRepository) {
         this.carRepository = carRepository;
         this.companyRepository = companyRepository;
+        this.insuranceRepository = insuranceRepository;
     }
 
     public List<Car> getCars() {
@@ -46,6 +50,7 @@ public class CarService {
 
     public void addNewCar(Car car) {
         car.setCompany(companyRepository.getOne(car.getCompanyId()));
+        car.setInsurance(insuranceRepository.getOne(car.getInsuranceId()));
         carRepository.save(car);
     }
 
@@ -73,6 +78,7 @@ public class CarService {
         existingCar.setPlateNumber(car.getPlateNumber());
         existingCar.setIsTaken(car.getIsTaken());
         existingCar.setCompany(companyRepository.getOne(car.getCompanyId()));
+        existingCar.setInsurance(insuranceRepository.getOne(car.getInsuranceId()));
 
         carRepository.save(existingCar);
         return "Car edited successfully!";

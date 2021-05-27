@@ -18,7 +18,13 @@ public class CarController {
     private final PlannedServicesService plannedServicesService;
 
     @Autowired
-    public CarController(CarService carService, DamageService damageService, RefuelingService refuelingService, ServicesService servicesService, PlannedServicesService plannedServicesService) {
+    public CarController(
+            CarService carService,
+            DamageService damageService,
+            RefuelingService refuelingService,
+            ServicesService servicesService,
+            PlannedServicesService plannedServicesService
+    ) {
         this.carService = carService;
         this.damageService = damageService;
         this.refuelingService = refuelingService;

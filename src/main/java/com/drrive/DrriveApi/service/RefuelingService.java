@@ -49,7 +49,7 @@ public class RefuelingService {
         refuelingRepository.deleteById(idRefueling);
     }
 
-    public void updateRefueling(Refueling refueling) {
+    public String updateRefueling(Refueling refueling) {
         Refueling existingRefueling = refuelingRepository.findById(refueling.getIdRefueling())
                 .orElseThrow(() -> new IllegalStateException(
                         "Refueling with id: " + refueling.getIdRefueling() + "doesn't exist."
@@ -62,5 +62,6 @@ public class RefuelingService {
         existingRefueling.setCar(carRepository.getOne(refueling.getCarId()));
 
         refuelingRepository.save(existingRefueling);
+        return "Refueling edited successfully!";
     }
 }

@@ -41,7 +41,11 @@
 `/posts` - get a list of posts<br />
 `/posts/{id}` - get a specific post<br />
 `/planned` - get a list of planned services<br />
+`/reports` - get a list of reports<br />
+`/insurance` - get a list of insurances<br />
 `/planned/{id}` - get a specific planned service<br />
+`/reports/{id}` - get a specific report<br />
+`/insurance/{id}` - get a specific report<br />
 
 <h2>POST</h2>
 
@@ -56,6 +60,8 @@
 `/user`- add user<br />
 `/posts`- add user<br />
 `/planned`- add planned service<br />
+`/reports`- add report<br />
+`/insurance`- add report<br />
 
 <h2>DELETE</h2>
 
@@ -69,3 +75,5 @@
 `/usersData/{id}` - delete specific UsersData<br />
 `/posts/{id}` - delete specific post<br />
 `/planned/{id}` - delete specific planned service<br />
+`/reports/{id}` - delete specific report<br />
+`/insurance/{id}` - delete specific insurance<br />

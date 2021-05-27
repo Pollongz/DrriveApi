@@ -1,11 +1,13 @@
 package com.drrive.DrriveApi.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.List;
 
 @Data
 @NoArgsConstructor
@@ -39,4 +41,7 @@ public class UsersData implements Serializable {
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Company company;
 
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "usersData", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "usersReports")
+    private List<Report> reports;
 }

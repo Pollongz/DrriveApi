@@ -53,10 +53,20 @@ public class Car implements Serializable {
     @JsonBackReference(value = "carPlannedServices")
     private List<PlannedService> plannedServices;
 
-    private transient Integer CompanyId;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "car", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "carReports")
+    private List<Report> reports;
+
+    private transient Integer companyId;
 
     @ManyToOne
     @JoinColumn(name = "id_company")
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Company company;
+
+    private transient Integer insuranceId;
+
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinColumn(name = "id_insurance_info")
+    private Insurance insurance;
 }
