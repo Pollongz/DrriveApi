@@ -25,6 +25,14 @@ public class Damage implements Serializable {
     @Column(name = "damage_date")
     @Temporal(TemporalType.DATE)
     private Date date;
+
+    private transient Integer reportedById;
+
+    @ManyToOne
+    @JoinColumn(name = "reported_by_id")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    private UsersData reportedBy;
+
     private transient Integer carId;
 
     @ManyToOne

@@ -44,4 +44,8 @@ public class UsersData implements Serializable {
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "usersData", cascade = CascadeType.ALL)
     @JsonBackReference(value = "usersReports")
     private List<Report> reports;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "reportedBy", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "usersDamagesReported")
+    private List<Damage> damages;
 }

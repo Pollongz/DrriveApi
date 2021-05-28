@@ -4,6 +4,7 @@ import com.drrive.DrriveApi.entity.Car;
 import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.DamageRepository;
+import com.drrive.DrriveApi.rest.UsersDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,12 +15,14 @@ public class DamageService {
     
     private final DamageRepository damageRepository;
     private final CarRepository carRepository;
+    private final UsersDataRepository usersDataRepository;
 
 
     @Autowired
-    public DamageService(DamageRepository damageRepository, CarRepository carRepository) {
+    public DamageService(DamageRepository damageRepository, CarRepository carRepository, UsersDataRepository usersDataRepository) {
         this.damageRepository = damageRepository;
         this.carRepository = carRepository;
+        this.usersDataRepository = usersDataRepository;
     }
 
     public List<Damage> getDamages() {
@@ -39,6 +42,7 @@ public class DamageService {
 
     public void addNewDamage(Damage damage) {
         damage.setCar(carRepository.getOne(damage.getCarId()));
+        damage.setReportedBy(usersDataRepository.getOne(damage.getReportedById()));
         damageRepository.save(damage);
     }
 
@@ -59,6 +63,7 @@ public class DamageService {
         existingDamage.setDescription(damage.getDescription());
         existingDamage.setDate(damage.getDate());
         existingDamage.setCar(carRepository.getOne(damage.getCarId()));
+        existingDamage.setReportedBy(usersDataRepository.getOne(damage.getReportedById()));
 
         damageRepository.save(existingDamage);
     }
