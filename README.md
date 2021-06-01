@@ -1,6 +1,6 @@
 # DrriveApi(still in development)
 
- Backend created with Spring boot and Spring security for Fleet management system used in Web app and Mobile app. 
+ Backend created with Spring boot and Spring security for Fleet management system used in Web app(waiting for my friend to push project to git) and Mobile app(https://github.com/Pollongz/DrriveApp). 
 
 <h1>Feautures</h1>
 
