@@ -50,7 +50,7 @@ public class PhotoService {
         photoRepository.deleteById(idPhoto);
     }
 
-    public void updatePhoto(Photo photo) {
+    public String updatePhoto(Photo photo) {
         Photo existingPhoto = photoRepository.findById(photo.getIdPhoto())
                 .orElseThrow(() -> new IllegalStateException(
                         "Photo with id: " + photo.getIdPhoto() + "doesn't exist."
@@ -59,5 +59,6 @@ public class PhotoService {
         existingPhoto.setDamage(damageRepository.getOne(photo.getDamageId()));
 
         photoRepository.save(existingPhoto);
+        return "Photo edited successfully!";
     }
 }

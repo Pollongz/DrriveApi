@@ -67,7 +67,6 @@ public class CompanyController {
 
     @PutMapping(path = "/{idCompany}")
     public String updateCompany(@RequestBody Company company) {
-        companyService.updateCompany(company);
-        return "Company edited successfully!";
+        return companyService.updateCompany(company);
     }
 }

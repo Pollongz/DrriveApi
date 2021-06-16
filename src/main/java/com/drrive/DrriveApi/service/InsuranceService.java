@@ -22,7 +22,10 @@ public class InsuranceService {
     }
 
     public Insurance getInsuranceById(Integer idInsurance) {
-        return insuranceRepository.findById(idInsurance).orElse(null);
+        return insuranceRepository.findById(idInsurance)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Insurance with id: " + idInsurance + "doesn't exist."
+                ));
     }
 
     public void addNewAddres(Insurance insurance) {

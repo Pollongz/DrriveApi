@@ -49,7 +49,6 @@ public class DamageController {
 
     @PutMapping(path = "/{idDamage}")
     public String updateDamage(@RequestBody Damage damage, @PathVariable Integer idDamage) {
-        damageService.updateDamage(damage);
-        return "Damage edited successfully!";
+        return damageService.updateDamage(damage);
     }
 }

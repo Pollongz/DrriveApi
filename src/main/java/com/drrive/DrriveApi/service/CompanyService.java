@@ -45,7 +45,7 @@ public class CompanyService {
         companyRepository.deleteById(idCompany);
     }
 
-    public void updateCompany(Company company) {
+    public String updateCompany(Company company) {
         Company existingCompany = companyRepository.findById(company.getIdCompany())
                 .orElseThrow(() -> new IllegalStateException(
                         "Car with id: " + company.getIdCompany() + "doesn't exist."
@@ -55,5 +55,6 @@ public class CompanyService {
         existingCompany.setAddress(addressRepository.getOne(company.getAddressId()));
 
         companyRepository.save(existingCompany);
+        return "Company edited successfully!";
     }
 }

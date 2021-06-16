@@ -2,6 +2,7 @@ package com.drrive.DrriveApi.controller;
 
 import com.drrive.DrriveApi.entity.*;
 import com.drrive.DrriveApi.service.ReportService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,6 +13,7 @@ public class ReportController {
     
     private final ReportService reportService;
 
+    @Autowired
     public ReportController(ReportService reportService) {
         this.reportService = reportService;
     }

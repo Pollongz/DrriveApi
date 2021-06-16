@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NoArgsConstructor
@@ -23,8 +24,7 @@ public class PlannedService implements Serializable {
     @Column(name = "description")
     private String description;
     @Column(name = "date")
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    LocalDateTime date;
     private transient Integer carId;
 
     @ManyToOne

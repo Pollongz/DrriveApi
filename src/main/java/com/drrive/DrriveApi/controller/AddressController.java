@@ -40,7 +40,6 @@ public class AddressController {
 
     @PutMapping(path = "/{idAddress}")
     public String updateAddress(@RequestBody Address address) {
-        addressService.updateAddress(address);
-        return "Address edited successfully!";
+        return addressService.updateAddress(address);
     }
 }

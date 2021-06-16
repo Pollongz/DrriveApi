@@ -55,7 +55,7 @@ public class DamageService {
         damageRepository.deleteById(idDamage);
     }
 
-    public void updateDamage(Damage damage) {
+    public String updateDamage(Damage damage) {
         Damage existingDamage = damageRepository.findById(damage.getIdDamage())
                 .orElseThrow(() -> new IllegalStateException(
                         "Damage with id: " + damage.getIdDamage() + "doesn't exist."
@@ -66,5 +66,6 @@ public class DamageService {
         existingDamage.setReportedBy(usersDataRepository.getOne(damage.getReportedById()));
 
         damageRepository.save(existingDamage);
+        return "Damage edited successfully!";
     }
 }

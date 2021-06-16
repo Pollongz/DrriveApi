@@ -40,7 +40,6 @@ public class UsersDataController {
 
     @PutMapping(path = "/{idUserData}")
     public String updateUser(@RequestBody UsersData usersData, @PathVariable Integer idUserData) {
-        usersDataService.updateUser(usersData);
-        return "UsersData edited successfully!";
+        return usersDataService.updateUser(usersData);
     }
 }

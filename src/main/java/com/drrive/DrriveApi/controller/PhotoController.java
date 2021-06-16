@@ -40,7 +40,6 @@ public class PhotoController {
 
     @PutMapping(path = "/{idPhoto}")
     public String updatePhoto(@RequestBody Photo photo) {
-        photoService.updatePhoto(photo);
-        return "Photo edited successfully!";
+       return photoService.updatePhoto(photo);
     }
 }

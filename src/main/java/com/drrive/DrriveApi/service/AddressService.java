@@ -38,7 +38,7 @@ public class AddressService {
         addressRepository.deleteById(idAddress);
     }
 
-    public void updateAddress(Address address) {
+    public String updateAddress(Address address) {
         Address existingAddress = addressRepository.findById(address.getIdAddress())
                 .orElseThrow(() -> new IllegalStateException(
                         "Address with id: " + address.getIdAddress() + "doesn't exist."
@@ -50,5 +50,6 @@ public class AddressService {
         existingAddress.setBuildingNumber(address.getBuildingNumber());
 
         addressRepository.save(existingAddress);
+        return "Address edited successfully!";
     }
 }

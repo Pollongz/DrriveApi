@@ -56,7 +56,7 @@ public class UsersDataService {
         usersDataRepository.deleteById(idUserData);
     }
 
-    public void updateUser(UsersData usersData) {
+    public String updateUser(UsersData usersData) {
         UsersData existingUser = usersDataRepository.findById(usersData.getIdUserData())
                 .orElseThrow(() -> new IllegalStateException(
                         "UsersData with id: " + usersData.getIdUserData() + " doesn't exist."
@@ -68,5 +68,6 @@ public class UsersDataService {
         existingUser.setUser(userRepository.getOne(usersData.getUserId()));
 
         usersDataRepository.save(existingUser);
+        return "UsersData edited successfully!";
     }
 }
