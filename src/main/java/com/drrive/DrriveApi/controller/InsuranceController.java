@@ -29,8 +29,8 @@ public class InsuranceController {
     }
 
     @PostMapping
-    public void addNewInsurance(@RequestBody Insurance insurance) {
-        insuranceService.addNewAddres(insurance);
+    public Insurance addNewInsurance(@RequestBody Insurance insurance) {
+        return insuranceService.addNewInsurance(insurance);
     }
 
     @DeleteMapping(path = "/{idInsurance}")

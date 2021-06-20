@@ -73,8 +73,8 @@ public class CarController {
     }
 
     @PostMapping
-    public void addNewCar(@RequestBody Car car) {
-        carService.addNewCar(car);
+    public Car addNewCar(@RequestBody Car car) {
+        return carService.addNewCar(car);
     }
 
     @DeleteMapping(path = "/{idCar}")

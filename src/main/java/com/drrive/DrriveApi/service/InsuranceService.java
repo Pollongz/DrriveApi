@@ -28,8 +28,8 @@ public class InsuranceService {
                 ));
     }
 
-    public void addNewAddres(Insurance insurance) {
-        insuranceRepository.save(insurance);
+    public Insurance addNewInsurance(Insurance insurance) {
+        return insuranceRepository.save(insurance);
     }
 
     public void deleteInsurance(Integer idInsurance) {

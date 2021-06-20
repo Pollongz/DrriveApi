@@ -40,10 +40,10 @@ public class DamageService {
                 ));
     }
 
-    public void addNewDamage(Damage damage) {
+    public Damage addNewDamage(Damage damage) {
         damage.setCar(carRepository.getOne(damage.getCarId()));
         damage.setReportedBy(usersDataRepository.getOne(damage.getReportedById()));
-        damageRepository.save(damage);
+        return damageRepository.save(damage);
     }
 
     public void deleteDamage(Integer idDamage) {

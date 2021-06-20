@@ -29,8 +29,8 @@ public class ServicesController {
     }
 
     @PostMapping
-    public void addNewServices(@RequestBody Services service) {
-        serviceService.addNewServices(service);
+    public Services addNewServices(@RequestBody Services service) {
+        return serviceService.addNewServices(service);
     }
 
     @DeleteMapping(path = "/{idServices}")

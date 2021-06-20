@@ -36,9 +36,9 @@ public class RefuelingService {
                 ));
     }
 
-    public void addNewRefueling(Refueling refueling) {
+    public Refueling addNewRefueling(Refueling refueling) {
         refueling.setCar(carRepository.getOne(refueling.getCarId()));
-        refuelingRepository.save(refueling);
+        return refuelingRepository.save(refueling);
     }
 
     public void deleteRefueling(Integer idRefueling) {

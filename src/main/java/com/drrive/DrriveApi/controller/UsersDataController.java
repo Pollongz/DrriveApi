@@ -29,8 +29,8 @@ public class UsersDataController {
     }
 
     @PostMapping
-    public void addNewUser(@RequestBody UsersData usersData) {
-        usersDataService.addNewUser(usersData);
+    public UsersData addNewUser(@RequestBody UsersData usersData) {
+        return usersDataService.addNewUser(usersData);
     }
 
     @DeleteMapping(path = "/{idUserData}")

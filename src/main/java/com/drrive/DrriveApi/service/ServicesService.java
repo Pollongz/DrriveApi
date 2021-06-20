@@ -36,9 +36,9 @@ public class ServicesService {
                 ));
     }
 
-    public void addNewServices(Services services) {
+    public Services addNewServices(Services services) {
         services.setCar(carRepository.getOne(services.getCarId()));
-        servicesRepository.save(services);
+        return servicesRepository.save(services);
     }
 
     public void deleteServices(Integer idServices) {

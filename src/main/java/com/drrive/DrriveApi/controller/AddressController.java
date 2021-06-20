@@ -29,8 +29,8 @@ public class AddressController {
     }
 
     @PostMapping
-    public void addNewAddress(@RequestBody Address address) {
-        addressService.addNewAddres(address);
+    public Address addNewAddress(@RequestBody Address address) {
+        return addressService.addNewAddress(address);
     }
 
     @DeleteMapping(path = "/{idAddress}")
