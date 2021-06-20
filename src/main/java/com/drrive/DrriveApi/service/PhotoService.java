@@ -37,9 +37,9 @@ public class PhotoService {
                 ));
     }
 
-    public void addNewPhoto(Photo photo) {
+    public Photo addNewPhoto(Photo photo) {
         photo.setDamage(damageRepository.getOne(photo.getDamageId()));
-        photoRepository.save(photo);
+        return photoRepository.save(photo);
     }
 
     public void deletePhoto(Integer idPhoto) {

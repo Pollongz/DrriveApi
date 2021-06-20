@@ -34,10 +34,10 @@ public class ReportService {
                 ));
     }
 
-    public void addNewReport(Report report) {
+    public Report addNewReport(Report report) {
         report.setCar(carRepository.getOne(report.getIdCar()));
         report.setUsersData(usersDataRepository.getOne(report.getIdUsersData()));
-        reportRepository.save(report);
+        return reportRepository.save(report);
     }
 
     public String deleteReport(Integer idReport) {

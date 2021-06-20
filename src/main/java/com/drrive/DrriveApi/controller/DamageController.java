@@ -38,8 +38,8 @@ public class DamageController {
     }
 
     @PostMapping
-    public void addNewDamage(@RequestBody Damage damage) {
-        damageService.addNewDamage(damage);
+    public Damage addNewDamage(@RequestBody Damage damage) {
+        return damageService.addNewDamage(damage);
     }
 
     @DeleteMapping(path = "/{idDamage}")

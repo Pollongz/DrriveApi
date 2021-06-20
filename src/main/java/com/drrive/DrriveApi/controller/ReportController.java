@@ -29,8 +29,8 @@ public class ReportController {
     }
 
     @PostMapping
-    public void addNewReport(@RequestBody Report report) {
-        reportService.addNewReport(report);
+    public Report addNewReport(@RequestBody Report report) {
+        return reportService.addNewReport(report);
     }
 
     @DeleteMapping(path = "/{idReport}")

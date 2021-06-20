@@ -29,8 +29,8 @@ public class RefuelingController {
     }
 
     @PostMapping
-    public void addNewRefueling(@RequestBody Refueling refueling) {
-        refuelingService.addNewRefueling(refueling);
+    public Refueling addNewRefueling(@RequestBody Refueling refueling) {
+        return refuelingService.addNewRefueling(refueling);
     }
 
     @DeleteMapping(path = "/{idRefueling}")

@@ -48,10 +48,10 @@ public class CarService {
                 ));
     }
 
-    public void addNewCar(Car car) {
+    public Car addNewCar(Car car) {
         car.setCompany(companyRepository.getOne(car.getCompanyId()));
         car.setInsurance(insuranceRepository.getOne(car.getInsuranceId()));
-        carRepository.save(car);
+        return carRepository.save(car);
     }
 
     public String deleteCar(Integer idCar) {

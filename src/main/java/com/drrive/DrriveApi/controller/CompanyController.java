@@ -56,8 +56,8 @@ public class CompanyController {
     }
 
     @PostMapping
-    public void addNewCompany(@RequestBody Company company) {
-        companyService.addNewCompany(company);
+    public Company addNewCompany(@RequestBody Company company) {
+        return companyService.addNewCompany(company);
     }
 
     @DeleteMapping(path = "/{idCompany}")

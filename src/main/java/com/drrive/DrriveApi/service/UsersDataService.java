@@ -42,10 +42,10 @@ public class UsersDataService {
                 ));
     }
 
-    public void addNewUser(UsersData usersData) {
+    public UsersData addNewUser(UsersData usersData) {
         usersData.setCompany(companyRepository.getOne(usersData.getCompanyId()));
         usersData.setUser(userRepository.getOne(usersData.getUserId()));
-        usersDataRepository.save(usersData);
+        return usersDataRepository.save(usersData);
     }
 
     public void deleteUser(Integer idUserData) {

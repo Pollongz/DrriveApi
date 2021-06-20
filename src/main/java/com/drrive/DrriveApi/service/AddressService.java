@@ -25,8 +25,8 @@ public class AddressService {
         return addressRepository.findById(idAddress).orElse(null);
     }
 
-    public void addNewAddres(Address address) {
-        addressRepository.save(address);
+    public Address addNewAddress(Address address) {
+        return addressRepository.save(address);
     }
 
     public void deleteAddress(Integer idAddress) {

@@ -31,9 +31,9 @@ public class CompanyService {
                 ));
     }
 
-    public void addNewCompany(Company company) {
+    public Company addNewCompany(Company company) {
         company.setAddress(addressRepository.getOne(company.getAddressId()));
-        companyRepository.save(company);
+        return companyRepository.save(company);
     }
 
     public void deleteCompany(Integer idCompany) {

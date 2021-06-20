@@ -29,8 +29,8 @@ public class PhotoController {
     }
 
     @PostMapping
-    public void addNewPhoto(@RequestBody Photo photo) {
-        photoService.addNewPhoto(photo);
+    public Photo addNewPhoto(@RequestBody Photo photo) {
+        return photoService.addNewPhoto(photo);
     }
 
     @DeleteMapping(path = "/{idPhoto}")
