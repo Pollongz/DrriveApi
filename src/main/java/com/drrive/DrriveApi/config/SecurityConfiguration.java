@@ -103,7 +103,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.POST,"/usersData").hasAnyRole("MANAGER", "ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/user").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/usersData").hasRole("ADMIN");
-
     }
 
     @Bean
