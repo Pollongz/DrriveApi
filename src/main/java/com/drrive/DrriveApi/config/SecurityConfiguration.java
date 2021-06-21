@@ -7,6 +7,7 @@ import com.drrive.DrriveApi.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -63,9 +64,46 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilter(new JwtAuthorizationFilter(authenticationManager(), this.userRepository))
                 .authorizeRequests()
                 .antMatchers("/login").permitAll()
-                .antMatchers("/car").hasAnyRole("USER", "MANAGER", "ADMIN")
-                .antMatchers("/address").hasAnyRole("MANAGER", "ADMIN")
-                .antMatchers("/usersData").hasRole("ADMIN");
+                .antMatchers(HttpMethod.GET,"/car").permitAll()
+                .antMatchers(HttpMethod.GET,"/address").permitAll()
+                .antMatchers(HttpMethod.GET,"/company").permitAll()
+                .antMatchers(HttpMethod.GET,"/damage").permitAll()
+                .antMatchers(HttpMethod.POST,"/damage").permitAll()
+                .antMatchers(HttpMethod.GET,"/refueling").permitAll()
+                .antMatchers(HttpMethod.POST,"/refueling").permitAll()
+                .antMatchers(HttpMethod.GET,"/services").permitAll()
+                .antMatchers(HttpMethod.GET,"/photo").permitAll()
+                .antMatchers(HttpMethod.POST,"/photo").permitAll()
+                .antMatchers(HttpMethod.GET,"/user").permitAll()
+                .antMatchers(HttpMethod.GET,"/posts").permitAll()
+                .antMatchers(HttpMethod.GET,"/planned").permitAll()
+                .antMatchers(HttpMethod.GET,"/reports").permitAll()
+                .antMatchers(HttpMethod.POST,"/reports").permitAll()
+                .antMatchers(HttpMethod.GET,"/insurance").permitAll()
+                .antMatchers(HttpMethod.GET,"/usersData").permitAll()
+                .antMatchers(HttpMethod.POST,"/car").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/car").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/address").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/address").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/company").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/company").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/damage").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/refueling").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/services").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/services").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/photo").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/user").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/posts").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/posts").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/planned").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/planned").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/reports").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/insurance").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/insurance").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.POST,"/usersData").hasAnyRole("MANAGER", "ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/user").hasRole("ADMIN")
+                .antMatchers(HttpMethod.DELETE,"/usersData").hasRole("ADMIN");
+
     }
 
     @Bean
