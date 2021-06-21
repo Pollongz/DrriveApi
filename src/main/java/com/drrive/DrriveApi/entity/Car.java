@@ -68,5 +68,6 @@ public class Car implements Serializable {
 
     @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "id_insurance_info")
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     private Insurance insurance;
 }

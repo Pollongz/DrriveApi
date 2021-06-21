@@ -22,7 +22,10 @@ public class AddressService {
     }
 
     public Address getAddressById(Integer idAddress) {
-        return addressRepository.findById(idAddress).orElse(null);
+        return addressRepository.findById(idAddress)
+                .orElseThrow(() -> new IllegalStateException(
+                        "Address with id: " + idAddress + "doesn't exist."
+                ));
     }
 
     public Address addNewAddress(Address address) {
