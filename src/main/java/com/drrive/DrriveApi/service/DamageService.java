@@ -5,9 +5,13 @@ import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.DamageRepository;
 import com.drrive.DrriveApi.rest.UsersDataRepository;
+import org.joda.time.DateTime;
+import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -16,7 +20,6 @@ public class DamageService {
     private final DamageRepository damageRepository;
     private final CarRepository carRepository;
     private final UsersDataRepository usersDataRepository;
-
 
     @Autowired
     public DamageService(DamageRepository damageRepository, CarRepository carRepository, UsersDataRepository usersDataRepository) {
@@ -33,10 +36,20 @@ public class DamageService {
         return damageRepository.findDamagesFromCar(car);
     }
 
+    public List<Damage> getDamagesFromCarFromTo(Car car, Date from_date, Date to_date) {
+        List<Damage> damages = damageRepository.findDamagesFromCarFromTo(car, from_date, to_date);
+
+        if (damages == null) {
+            throw new IllegalStateException("No damages between " + from_date + " and " + to_date + " for a car with id: " + car);
+        } else {
+            return damages;
+        }
+    }
+
     public Damage getDamagesById(Integer idDamage) {
         return damageRepository.findById(idDamage)
                 .orElseThrow(() -> new IllegalStateException(
-                        "Damage with id: " + idDamage + "doesn't exist."
+                        "Damage with id: " + idDamage + " doesn't exist."
                 ));
     }
 

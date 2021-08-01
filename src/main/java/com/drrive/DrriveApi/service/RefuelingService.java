@@ -1,12 +1,14 @@
 package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Car;
+import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Refueling;
 import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.RefuelingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -27,6 +29,16 @@ public class RefuelingService {
 
     public List<Refueling> getCarsRefuelings(Car car) {
         return refuelingRepository.findRefuelingsFromCar(car);
+    }
+
+    public List<Refueling> getRefuelingsFromCarFromTo(Car car, Date from_date, Date to_date) {
+        List<Refueling> refuelings = refuelingRepository.findRefuelingsFromCarFromTo(car, from_date, to_date);
+
+        if (refuelings == null) {
+            throw new IllegalStateException("No refuelings between " + from_date + " and " + to_date + " for a car with id: " + car);
+        } else {
+            return refuelings;
+        }
     }
 
     public Refueling getRefuelingById(Integer idRefueling) {

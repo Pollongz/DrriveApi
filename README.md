@@ -15,9 +15,12 @@
 `/address/{id}` - get specific address<br />
 `/car` - get a list of cars<br />
 `/car/{id}` - get specific car<br />
-`/car/{id}/damages` - get a list of damages on a specific car<br />
+`car/{id}/damages` - get a list of damages on a specific car<br />
+`car/{id}/damage?from_date=YYYY-mm-dd&to_date=YYYY-mm-dd` - get a list of damages on a car from a specific period<br />
 `/car/{id}/refuelings` - get a list of refuelings on a specific car<br />
+`/car/{id}/refueling?from_date=YYYY-mm-dd&to_date=YYYY-mm-dd` - get a list of refuelings on a car from a specific period<br />
 `/car/{id}/services` - get a list of services on a specific car<br />
+`/car/{id}/service?from_date=YYYY-mm-dd&to_date=YYYY-mm-dd` - get a list of services on a car from a specific period<br />
 `/car/{id}/planned` - get a list of planned services on a specific car<br />
 `/car/available` - get a list of available cars<br />
 `/car/taken` - get a list of taken cars<br />
@@ -41,7 +44,7 @@
 `/posts` - get a list of posts<br />
 `/posts/{id}` - get a specific post<br />
 `/planned` - get a list of planned services<br />
-`/reports` - get a list of reports<br />
+`/reports?from_date=YYYY-mm-ddThh:mm&to_date=YYYY-mm-ddThh:mm` - get a list of reports from specific period<br />
 `/insurance` - get a list of insurances<br />
 `/planned/{id}` - get a specific planned service<br />
 `/reports/{id}` - get a specific report<br />

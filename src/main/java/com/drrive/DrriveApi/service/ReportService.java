@@ -7,6 +7,7 @@ import com.drrive.DrriveApi.rest.UsersDataRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -23,15 +24,21 @@ public class ReportService {
         this.usersDataRepository = usersDataRepository;
     }
 
-    public List<Report> getReports() {
-        return reportRepository.findAll();
-    }
-
     public Report getReportById(Integer idReport) {
         return reportRepository.findById(idReport)
                 .orElseThrow(() -> new IllegalStateException(
                         "Report with id: " + idReport + "doesn't exist."
                 ));
+    }
+
+    public List<Report> getReportsFromTo(LocalDateTime from_date, LocalDateTime to_date) {
+        List<Report> reports = reportRepository.findReportsFromTo(from_date, to_date);
+
+        if (reports == null) {
+            throw new IllegalStateException("No reports between" + from_date + " and " + to_date);
+        } else {
+            return reports;
+        }
     }
 
     public Report addNewReport(Report report) {
