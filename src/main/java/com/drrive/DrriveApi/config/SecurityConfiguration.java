@@ -104,18 +104,5 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/user").hasRole("ADMIN")
                 .antMatchers(HttpMethod.DELETE,"/usersData").hasRole("ADMIN");
     }
-
-    @Bean
-    public CorsConfigurationSource corsConfigurationSource() {
-        final CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(Arrays.asList("http://localhost:3000", "https://jacekbujalski.github.io/"));
-        configuration.setAllowedMethods(Arrays.asList("HEAD",
-                "GET", "POST", "PUT", "DELETE", "PATCH"));
-        configuration.setAllowCredentials(true);
-        configuration.setAllowedHeaders(Arrays.asList("Authorization", "Cache-Control", "Content-Type"));
-        final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
 }
 

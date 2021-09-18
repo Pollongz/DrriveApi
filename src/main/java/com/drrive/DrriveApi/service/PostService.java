@@ -1,6 +1,5 @@
 package com.drrive.DrriveApi.service;
 
-import com.drrive.DrriveApi.entity.Car;
 import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.entity.Post;
 import com.drrive.DrriveApi.rest.CompanyRepository;

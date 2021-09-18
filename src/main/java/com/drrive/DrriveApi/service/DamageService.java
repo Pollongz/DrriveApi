@@ -5,12 +5,9 @@ import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.DamageRepository;
 import com.drrive.DrriveApi.rest.UsersDataRepository;
-import org.joda.time.DateTime;
-import org.joda.time.LocalDate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 

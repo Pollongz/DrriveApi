@@ -1,6 +1,5 @@
 package com.drrive.DrriveApi.rest;
 
-import com.drrive.DrriveApi.entity.Car;
 import com.drrive.DrriveApi.entity.Company;
 import com.drrive.DrriveApi.entity.Post;
 import org.springframework.data.jpa.repository.JpaRepository;
