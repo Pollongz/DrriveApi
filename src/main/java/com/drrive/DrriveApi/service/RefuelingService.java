@@ -1,7 +1,6 @@
 package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Refueling;
 import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.RefuelingRepository;

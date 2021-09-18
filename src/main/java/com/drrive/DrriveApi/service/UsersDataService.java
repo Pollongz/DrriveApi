@@ -1,6 +1,8 @@
 package com.drrive.DrriveApi.service;
 
-import com.drrive.DrriveApi.entity.*;
+import com.drrive.DrriveApi.entity.Company;
+import com.drrive.DrriveApi.entity.User;
+import com.drrive.DrriveApi.entity.UsersData;
 import com.drrive.DrriveApi.rest.CompanyRepository;
 import com.drrive.DrriveApi.rest.UserRepository;
 import com.drrive.DrriveApi.rest.UsersDataRepository;

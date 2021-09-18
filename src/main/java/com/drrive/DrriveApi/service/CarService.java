@@ -2,7 +2,6 @@ package com.drrive.DrriveApi.service;
 
 import com.drrive.DrriveApi.entity.Car;
 import com.drrive.DrriveApi.entity.Company;
-import com.drrive.DrriveApi.entity.Insurance;
 import com.drrive.DrriveApi.rest.CarRepository;
 import com.drrive.DrriveApi.rest.CompanyRepository;
 import com.drrive.DrriveApi.rest.InsuranceRepository;

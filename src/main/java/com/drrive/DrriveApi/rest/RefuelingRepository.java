@@ -1,7 +1,6 @@
 package com.drrive.DrriveApi.rest;
 
 import com.drrive.DrriveApi.entity.Car;
-import com.drrive.DrriveApi.entity.Damage;
 import com.drrive.DrriveApi.entity.Refueling;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

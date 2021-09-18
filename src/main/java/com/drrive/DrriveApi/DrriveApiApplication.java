@@ -12,5 +12,4 @@ public class DrriveApiApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(DrriveApiApplication.class, args);
 	}
-
 }
