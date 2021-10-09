@@ -110,7 +110,17 @@
 			<artifactId>java-jwt</artifactId>
 			<version>3.18.2</version>
 		</dependency>
-    </dependencies>
+
+		<!--		Tests			-->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.8.1</version>
+			<scope>test</scope>
+		</dependency>
+
+
+	</dependencies>
 
 	<build>
 		<plugins>
