@@ -33,7 +33,7 @@ public class PlannedServiceController {
         return plannedServicesService.addNewPlannedService(plannedService);
     }
 
-    @PostMapping(path = "/{idPlannedServicet}")
+    @PutMapping(path = "/{idPlannedService}")
     public PlannedService updatePlannedService(@RequestBody PlannedService plannedService) {
         return plannedServicesService.updatePlannedService(plannedService);
     }

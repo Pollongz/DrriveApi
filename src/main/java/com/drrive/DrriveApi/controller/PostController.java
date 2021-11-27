@@ -33,7 +33,7 @@ public class PostController {
         return postService.addNewPost(post);
     }
 
-    @PostMapping(path = "/{idPost}")
+    @PutMapping(path = "/{idPost}")
     public Post updatePost(@RequestBody Post post) {
         return postService.updatePost(post);
     }
