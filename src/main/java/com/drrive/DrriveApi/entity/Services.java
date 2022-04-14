@@ -27,7 +27,6 @@ public class Services implements Serializable {
     @Column(name = "mileage")
     private Integer mileage;
     @Column(name = "service_date")
-    @Temporal(TemporalType.DATE)
     private Date date;
 
     private transient Integer carId;
