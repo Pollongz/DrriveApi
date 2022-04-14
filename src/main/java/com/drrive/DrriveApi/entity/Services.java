@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -27,8 +27,7 @@ public class Services implements Serializable {
     @Column(name = "mileage")
     private Integer mileage;
     @Column(name = "service_date")
-    @Temporal(TemporalType.DATE)
-    private Date date;
+    private LocalDate date;
 
     private transient Integer carId;
 
